@@ -1,0 +1,337 @@
+<!DOCTYPE HTML>
+<!--
+	Traveler by freehtml5.co
+	Twitter: http://twitter.com/fh5co
+	URL: http://freehtml5.co
+-->
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>CbC Reporting &mdash; Singapore</title>
+
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="css/icomoon.css">
+	<!-- Themify Icons-->
+	<link rel="stylesheet" href="css/themify-icons.css">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="css/bootstrap.css">
+
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="css/magnific-popup.css">
+
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="css/bootstrap-datepicker.min.css">
+
+	<!-- Owl Carousel  -->
+	<link rel="stylesheet" href="css/owl.carousel.min.css">
+	<link rel="stylesheet" href="css/owl.theme.default.min.css">
+
+	<!-- Theme style  -->
+	<link rel="stylesheet" href="css/style.css">
+
+	<!-- Modernizr JS -->
+	<script src="js/modernizr-2.6.2.min.js"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+
+	<script>
+		function checkExtension() {
+			if ($('div.checkbox-group.required :checkbox:checked').length > 0) {
+				var chkbxs = $('div.checkbox-group.required :checkbox:checked');
+				var i;
+				var countries = [];
+				for (i = 0; i < chkbxs.length; i++) {
+					countries[i] = chkbxs[i].value;
+				}
+				document.getElementById('selected_countries').value = countries;
+			} else {
+				alert('Warning: No subsidiary country selected.');
+				return false;
+			}
+			var filename = document.getElementById("CbcReport").value;
+			if (filename == "") {
+				alert('Warning: No file selected.');
+				return false;
+			}
+			var ext = filename.match(/\.([^\.]+)$/)[1];
+			switch (ext) {
+				case 'xlsx':
+					return true;
+					break;
+				default:
+					alert('Warning: Incorrect file format selected.');
+					return false;
+			}
+		};
+	</script>
+</head>
+
+<body>
+
+	<div class="gtco-loader"></div>
+
+	<div id="page">
+
+
+		<!-- <div class="page-inner"> -->
+		<nav class="gtco-nav" role="navigation">
+			<div class="gtco-container">
+
+				<div class="row">
+					<div class="col-sm-6 col-xs-12" style="padding-left:30px;">
+						<div id="gtco-logo">
+							<a href="/">Country-by-Country Reporting
+								<em>&mdash; Singapore</em>
+							</a>
+						</div>
+					</div>
+					<div class="col-xs-6 text-right menu-1" style="padding-right:40px;">
+						<ul>
+							<% if (user != null) { %>
+								<li class="has-dropdown">
+									<a href="#">
+										<span class="ti_icon size-default corner-default" style="color:white;">
+											<i class="ti-user" style="color:white;"></i> (Welcome,
+											<%= user.mne_id %>)
+										</span>
+									</a>
+									<ul class="dropdown">
+										<li>
+											<a href="logout">Sign Out</a>
+										</li>
+									</ul>
+								</li>
+								<li class="has-dropdown">
+									<a href="#">Action</a>
+									<ul class="dropdown">
+										<li>
+											<a href="#">Submit CbC Report</a>
+										</li>
+										<li>
+											<a href="manage-cbcr">Manage CbC Report</a>
+										</li>
+									</ul>
+								</li>
+								<% } else {%>
+									<li>
+										<span class="ti_icon size-default corner-default icon-left text-color-black icon-color-black">
+											<i class="ti-user" style="color:white;"></i>
+										</span>
+										<a href="/">Sign In</a>
+									</li>
+									<% } %>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</nav>
+
+		<header id="gtco-header" class="gtco-cover gtco-cover-sm" role="banner" style="background-image: url(images/img_bg_3.jpg)">
+			<div class="overlay"></div>
+			<div class="gtco-container">
+				<div class="row">
+					<div class="col-md-12 col-md-offset-0 text-left">
+						<div class="row row-mt-15em">
+
+							<div class="col-md-7 mt-text animate-box" data-animate-effect="fadeInUp">
+								<span class="intro-text-small"></span>
+								<h1>Submit CbC Report</h1>
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</header>
+
+
+		<div class="gtco-section border-bottom">
+			<div class="gtco-container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="col-md-8 animate-box">
+							<% if (uploadStatus.length > 0) {
+								if (uploadStatus) { %>
+								<div class="alert alert-success">
+									File uploaded successfully! <a href="/manage-cbcr">View it here</a>
+								</div>
+								<% } else { %>
+									<div class="alert alert-danger">
+										File upload failed.
+									</div>
+									<% }
+								 } %>
+										<h3>CbC Report Details</h3>
+										<form action="/submit-cbcr" method="POST" enctype="multipart/form-data" onsubmit="return checkExtension();">
+											<div class="row form-group">
+												<div class="col-md-12">
+													<label for="name">Filing Entity</label>
+													<input type="text" name="mneID" class="form-control" value="<%= user.mne_id %>" disabled>
+												</div>
+											</div>
+
+											<div class="row form-group">
+												<div class="col-md-12">
+													<label for="name">Financial Year</label>
+													<select name="financialYear" class="form-control" required>
+														<option value="" selected disabled>Select Financial Year</option>
+														<option value="2016">FY2016</option>
+														<option value="2017">FY2017</option>
+														<option value="2018">FY2018</option>
+													</select>
+												</div>
+											</div>
+
+											<div class="row form-group checkbox-group required">
+												<div class="col-md-12">
+													<label for="name">Subsidiary Countries</label>
+													<input type="hidden" id="selected_countries" name="selected_countries" />
+													<div class="checkbox">
+														<label for="name">
+															<input type="checkbox" name="countries[]" value="SG">SG (Singapore)</label>
+													</div>
+													<div class="checkbox">
+														<label for="name">
+															<input type="checkbox" name="countries[]" value="AU">AU (Australia)</label>
+													</div>
+													<div class="checkbox">
+														<label for="name">
+															<input type="checkbox" name="countries[]" value="CA">CA (Canada)</label>
+													</div>
+													<div class="checkbox">
+														<label for="name">
+															<input type="checkbox" name="countries[]" value="ID">ID (Indonesia)</label>
+													</div>
+													<div class="checkbox">
+														<label for="name">
+															<input type="checkbox" name="countries[]" value="GB">GB (United Kingdom)</label>
+													</div>
+													<div class="checkbox">
+														<label for="name">
+															<input type="checkbox" name="countries[]" value="NZ">NZ (New Zealand)</label>
+													</div>
+												</div>
+											</div>
+
+											<div class="row form-group">
+												<div class="col-md-12">
+													<label for="name">Select File</label>
+													<input type="file" class="form-control-file" id="CbcReport" name="CbcReport" aria-describedby="fileHelp" accept=".xls,.xlsx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel">
+													<small id="fileHelp" class="form-text text-muted">
+														Only file extension of
+														<b>.xlsx</b> is accepted
+													</small>
+												</div>
+											</div>
+
+											<br>
+
+											<div class="form-group">
+												<input type="submit" value="Submit CbC Report" class="btn btn-primary">
+											</div>
+
+										</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<footer id="gtco-footer" role="contentinfo">
+			<div class="gtco-container">
+				<div class="row row-p b-md">
+
+					<div class="col-md-7">
+						<div class="gtco-widget">
+							<h3>About CbC Reporting</h3>
+							<p>Country-by-Country (CbC) Reporting is an initiative by the Organisation for Economic Co-operation and Development
+								(OECD) to address tax transparency via the sharing of tax documents between countries. Parent companies of Multinational
+								Enterprises (MNEs) are required to submit CbC Reports to their respective local tax authorities for each financial
+								year, and reports would be shared with other tax authorities through information exchange agreements.</p>
+						</div>
+					</div>
+
+					<div class="col-md-4 col-md-push-1">
+						<div class="gtco-widget">
+							<h3>Inland Revenue Authority of Singapore (IRAS)</h3>
+							<ul class="gtco-quick-contact">
+								<li>
+									<a href="#">
+										<i class="icon-phone"></i> (+65) 6351 4427</a>
+								</li>
+								<li>
+									<a href="#">
+										<i class="icon-mail2"></i> ct_transfer_pricing@iras.gov.sg</a>
+								</li>
+								<li>
+									<a href="#">
+										<i class="icon-chat"></i> Live Chat</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="row copyright">
+					<div class="col-md-12">
+						<p class="pull-left">
+							<small class="block">&copy; 2016 Free HTML5. All Rights Reserved.</small>
+							<small class="block">Designed by
+								<a href="https://freehtml5.co/" target="_blank">FreeHTML5.co</a> Demo Images:
+								<a href="http://unsplash.com/" target="_blank">Unsplash</a>
+							</small>
+						</p>
+					</div>
+				</div>
+
+			</div>
+		</footer>
+		<!-- </div> -->
+
+	</div>
+
+	<div class="gototop js-top">
+		<a href="#" class="js-gotop">
+			<i class="icon-arrow-up"></i>
+		</a>
+	</div>
+
+	<!-- jQuery -->
+	<script src="js/jquery.min.js"></script>
+	<!-- jQuery Easing -->
+	<script src="js/jquery.easing.1.3.js"></script>
+	<!-- Bootstrap -->
+	<script src="js/bootstrap.min.js"></script>
+	<!-- Waypoints -->
+	<script src="js/jquery.waypoints.min.js"></script>
+	<!-- Carousel -->
+	<script src="js/owl.carousel.min.js"></script>
+	<!-- countTo -->
+	<script src="js/jquery.countTo.js"></script>
+
+	<!-- Stellar Parallax -->
+	<script src="js/jquery.stellar.min.js"></script>
+
+	<!-- Magnific Popup -->
+	<script src="js/jquery.magnific-popup.min.js"></script>
+	<script src="js/magnific-popup-options.js"></script>
+
+	<!-- Datepicker -->
+	<script src="js/bootstrap-datepicker.min.js"></script>
+
+
+	<!-- Main -->
+	<script src="js/main.js"></script>
+
+</body>
+
+</html>
