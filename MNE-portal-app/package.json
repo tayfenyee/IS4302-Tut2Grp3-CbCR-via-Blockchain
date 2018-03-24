@@ -1,0 +1,33 @@
+{
+  "name": "mne-portal-app",
+  "version": "1.0.0",
+  "description": "Shared portal for MNEs to submit CbC Reports",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tayfenyee/IS4302-Tut2Grp3-CbCR-via-Blockchain.git"
+  },
+  "author": "IS4302 Tutorial2 Group3",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tayfenyee/IS4302-Tut2Grp3-CbCR-via-Blockchain/issues"
+  },
+  "homepage": "https://github.com/tayfenyee/IS4302-Tut2Grp3-CbCR-via-Blockchain#readme",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.18.2",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.5.7",
+    "express": "^4.16.3",
+    "express-fileupload": "^0.4.0",
+    "express-session": "^1.15.6",
+    "mysql": "^2.15.0",
+    "passport": "^0.2.2",
+    "passport-local": "^1.0.0",
+    "request": "^2.85.0"
+  }
+}

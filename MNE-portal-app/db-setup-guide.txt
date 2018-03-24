@@ -1,0 +1,22 @@
+Installing MySQL Database:
+Follow the guide in this link - https://docs.oracle.com/javacomponents/advanced-management-console-2/install-guide/installing-and-configuring-mysql-database-advanced-management-console.htm#JSAMI-GUID-00D8401C-C5EF-4F7C-B211-8B268BA0DB91
+
+Creating and Selecting Database:
+Follow the guide in this link - https://dev.mysql.com/doc/refman/5.7/en/database-use.html
+In our case, the database name is 'mne_portal' and table name is 'mne_info'
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| mne_id   | varchar(20) | NO   | PRI | NULL    |       |
+| password | char(60)    | NO   |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+
+Command to Create Table:
+CREATE TABLE mne_info (mne_id VARCHAR(20) PRIMARY KEY, password CHAR(60));
+
+Command to Insert Test Values (*password is hashed, the original text for password is "p@ssw0rd"):
+INSERT INTO mne_info (mne_id, password) VALUES ("SG-MNE1", "$2a$10$o.2XRGhNP6U7mk0kBLoP1OERyDgMWmBzh6X58bhNhvHlCiomdo2pi");
+
+You can use the following credentials to login to the system:
+mne_id = SG-MNE1
+password = p@ssw0rd
