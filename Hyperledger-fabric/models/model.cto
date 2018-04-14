@@ -1,0 +1,89 @@
+/**
+ * Defines a data model for a cbc reports
+ */
+namespace org.acme.cbcreporting
+
+/**
+ * PARTICIPANTS
+ * Regulator - reguID
+ * TaxAuthority - taxAuthID
+ * SharedNode - nodeID
+ */
+participant Regulator identified by reguID 
+{
+  o String reguID
+}
+
+participant TaxAuthority identified by taxAuthID
+{
+  o String taxAuthID
+  o String taxAuthName
+  o String countryCode
+  o String[] partnerTaxAuth
+}
+
+participant SharedNode identified by nodeID
+{
+  o String nodeID
+  o String nodeName
+  --> TaxAuthority taxAuth
+}
+
+/**
+ * ASSETS
+ * CbcReport
+ */
+
+asset CbcReport identified by reportID {
+  o String reportID
+  o String reportName
+  o String mneID
+  o String dataFile
+  o String financialYear
+  o String[] subsidiaryCountryCode
+  o String[] sharedCountryList
+  --> SharedNode sharedNode
+  o String isEndorsed 
+  o String endorseDate optional
+  o String createdDate 
+}
+
+/**
+ * TRANSACTIONS
+ * 
+ */
+
+ //SharedNode
+
+transaction CreateCbcReport {
+  o String reportID
+  o String reportName
+  o String mneID
+  o String dataFile
+  o String financialYear
+  o String[] subsidiaryCountryCode
+}
+
+transaction UpdateCbcReport {
+  o String reportID
+  o String reportName
+  o String mneID
+  o String dataFile
+  o String financialYear
+  o String[] subsidiaryCountryCode
+}
+ //TaxAuthority
+
+transaction EndorseCbcReport {
+  o String reportID
+}
+
+transaction AddPartnerTaxAuthority {
+  o String taxAuthID
+  o String countryCode
+}
+
+transaction RemovePartnerTaxAuthority {
+  o String taxAuthID
+  o String countryCode
+}
