@@ -1,9 +1,4 @@
 <!DOCTYPE HTML>
-<!--
-	Traveler by freehtml5.co
-	Twitter: http://twitter.com/fh5co
-	URL: http://freehtml5.co
--->
 
 <head>
 	<meta charset="utf-8">
@@ -112,10 +107,10 @@
 									<a href="#">Action</a>
 									<ul class="dropdown">
 										<li>
-											<a href="#">Submit CbC Report</a>
+											<a href="manage-cbcr">Manage CbC Report</a>
 										</li>
 										<li>
-											<a href="manage-cbcr">Manage CbC Report</a>
+											<a href="#">Submit CbC Report</a>
 										</li>
 									</ul>
 								</li>
@@ -142,11 +137,13 @@
 
 							<div class="col-md-7 mt-text animate-box" data-animate-effect="fadeInUp">
 								<span class="intro-text-small"></span>
-								<h1>Submit CbC Report</h1>
+								<% if (reportArgs != null) { %>
+									<h1>Resubmit CbC Report</h1>
+									<% } else { %>
+										<h1>Submit CbC Report</h1>
+										<% } %>
 							</div>
-
 						</div>
-
 					</div>
 				</div>
 			</div>
@@ -161,7 +158,8 @@
 							<% if (uploadStatus.length > 0) {
 								if (uploadStatus) { %>
 								<div class="alert alert-success">
-									File uploaded successfully! <a href="/manage-cbcr">View it here</a>
+									File uploaded successfully!
+									<a href="/manage-cbcr#view">View it here</a>
 								</div>
 								<% } else { %>
 									<div class="alert alert-danger">
@@ -178,66 +176,86 @@
 												</div>
 											</div>
 
-											<div class="row form-group">
-												<div class="col-md-12">
-													<label for="name">Financial Year</label>
-													<select name="financialYear" class="form-control" required>
-														<option value="" selected disabled>Select Financial Year</option>
-														<option value="2016">FY2016</option>
-														<option value="2017">FY2017</option>
-														<option value="2018">FY2018</option>
-													</select>
-												</div>
-											</div>
+											<% var countries = [["SG","SG (Singapore)"],["AU","AU (Australia)"],["CA","CA (Canada)"],["ID","ID (Indonesia)"],
+											["NZ","NZ (New Zealand)"],["UK","UK (United Kingdom)"]];
 
-											<div class="row form-group checkbox-group required">
-												<div class="col-md-12">
-													<label for="name">Subsidiary Countries</label>
-													<input type="hidden" id="selected_countries" name="selected_countries" />
-													<div class="checkbox">
-														<label for="name">
-															<input type="checkbox" name="countries[]" value="SG">SG (Singapore)</label>
-													</div>
-													<div class="checkbox">
-														<label for="name">
-															<input type="checkbox" name="countries[]" value="AU">AU (Australia)</label>
-													</div>
-													<div class="checkbox">
-														<label for="name">
-															<input type="checkbox" name="countries[]" value="CA">CA (Canada)</label>
-													</div>
-													<div class="checkbox">
-														<label for="name">
-															<input type="checkbox" name="countries[]" value="ID">ID (Indonesia)</label>
-													</div>
-													<div class="checkbox">
-														<label for="name">
-															<input type="checkbox" name="countries[]" value="GB">GB (United Kingdom)</label>
-													</div>
-													<div class="checkbox">
-														<label for="name">
-															<input type="checkbox" name="countries[]" value="NZ">NZ (New Zealand)</label>
+											if (reportArgs != null) { %>
+												<input type="hidden" name="reportID" value="<%= reportArgs.reportID %>">
+												<input type="hidden" name="reupload" value="true">
+												<div class="row form-group">
+													<div class="col-md-12">
+														<label for="name">Financial Year</label>
+														<select name="financialYear" class="form-control" required>
+															<option value="<%= reportArgs.financialYear %>">FY
+																<%= reportArgs.financialYear %>
+															</option>
+														</select>
 													</div>
 												</div>
-											</div>
 
-											<div class="row form-group">
-												<div class="col-md-12">
-													<label for="name">Select File</label>
-													<input type="file" class="form-control-file" id="CbcReport" name="CbcReport" aria-describedby="fileHelp" accept=".xls,.xlsx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel">
-													<small id="fileHelp" class="form-text text-muted">
-														Only file extension of
-														<b>.xlsx</b> is accepted
-													</small>
+												<div class="row form-group checkbox-group required">
+													<div class="col-md-12">
+														<label for="name">Subsidiary Countries</label>
+														<input type="hidden" id="selected_countries" name="selected_countries" />
+														<% for (i=0; i<countries.length; i++) { %>
+															<div class="checkbox">
+																<label for="name">
+																	<input type="checkbox" name="countries[]" value="<%= countries[i][0] %>" <% if (reportArgs.subsidiaryCountryCode.includes(countries[i][0]))
+																	 { %>
+																	<%="checked"%>
+																		<% } %>>
+																			<%= countries[i][1] %>
+																</label>
+															</div>
+															<% } %>
+													</div>
 												</div>
-											</div>
+												<% } else { %>
+													<input type="hidden" name="reupload" value="false">
+													<div class="row form-group">
+														<div class="col-md-12">
+															<label for="name">Financial Year</label>
+															<select name="financialYear" class="form-control" required>
+																<option value="" selected disabled>Select Financial Year</option>
+																<option value="2016">FY2016</option>
+																<option value="2017">FY2017</option>
+																<option value="2018">FY2018</option>
+															</select>
+														</div>
+													</div>
 
-											<br>
+													<div class="row form-group checkbox-group required">
+														<div class="col-md-12">
+															<label for="name">Subsidiary Countries</label>
+															<input type="hidden" id="selected_countries" name="selected_countries" />
+															<% for (i=0; i<countries.length; i++) { %>
+																<div class="checkbox">
+																	<label for="name">
+																		<input type="checkbox" name="countries[]" value="<%= countries[i][0] %>">
+																		<%= countries[i][1] %>
+																	</label>
+																</div>
+																<% } %>
+														</div>
+													</div>
+													<% } %>
 
-											<div class="form-group">
-												<input type="submit" value="Submit CbC Report" class="btn btn-primary">
-											</div>
+														<div class="row form-group">
+															<div class="col-md-12">
+																<label for="name">Select File</label>
+																<input type="file" class="form-control-file" id="CbcReport" name="CbcReport" aria-describedby="fileHelp" accept=".xls,.xlsx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel">
+																<small id="fileHelp" class="form-text text-muted">
+																	Only file extension of
+																	<b>.xlsx</b> is accepted
+																</small>
+															</div>
+														</div>
 
+														<br>
+
+														<div class="form-group">
+															<input type="submit" value="Submit CbC Report" class="btn btn-primary">
+														</div>
 										</form>
 						</div>
 					</div>
@@ -285,10 +303,6 @@
 					<div class="col-md-12">
 						<p class="pull-left">
 							<small class="block">&copy; 2016 Free HTML5. All Rights Reserved.</small>
-							<small class="block">Designed by
-								<a href="https://freehtml5.co/" target="_blank">FreeHTML5.co</a> Demo Images:
-								<a href="http://unsplash.com/" target="_blank">Unsplash</a>
-							</small>
 						</p>
 					</div>
 				</div>

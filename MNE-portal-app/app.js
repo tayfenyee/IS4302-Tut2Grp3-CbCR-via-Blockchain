@@ -29,8 +29,8 @@ require('./routes/index')(app, passport);
 
 app.set('view engine', 'ejs');
 
-app.listen(3000, function () {
-  console.log('MNE portal app listening on port 3000...')
+app.listen(4000, function () {
+  console.log('MNE portal app listening on port 4000...')
 })
 
 
