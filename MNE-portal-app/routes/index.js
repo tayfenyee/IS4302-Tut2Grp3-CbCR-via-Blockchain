@@ -1,3 +1,10 @@
+const fs = require('fs');
+const stream = require('stream');
+const Client = require('node-rest-client').Client;
+const client = new Client();
+// IP Address of REST Server (Port 3001 for SharedNode SG)
+const ipAddr = "192.168.0.119";
+
 module.exports = function (app, passport) {
 
     // ===========================
@@ -7,9 +14,9 @@ module.exports = function (app, passport) {
         res.render('index', { message: req.flash('loginMessage'), user: req.user });
     });
 
-    // process login form
+    // Process login form
     app.post('/login', passport.authenticate('local-login', {
-        successRedirect: '/manage-cbcr',
+        successRedirect: '/',
         failureRedirect: '/',
         failureFlash: true
     }),
@@ -26,12 +33,13 @@ module.exports = function (app, passport) {
     // Submit CbCR Page ==========
     // ===========================
     app.get('/submit-cbcr', isLoggedIn, function (req, res) {
-        res.render('submit-cbcr', { uploadStatus: req.flash('uploadSuccess'), user: req.user });
+        res.render('submit-cbcr', { uploadStatus: req.flash('uploadSuccess'), reupload: false, reportArgs: null, user: req.user });
     });
 
-    app.post('/submit-cbcr', function (req, res) {
+    app.post('/submit-cbcr', isLoggedIn, function (req, res) {
         let file = req.files.CbcReport;
-        let filename = req.user.mne_id + '_FY' + req.body.financialYear + '_' + new Date().getTime() + '.xlsx';
+        let reportID = req.user.mne_id + '_' + new Date().getTime();
+        let filename = req.user.mne_id + '_FY' + req.body.financialYear + '.xlsx';
 
         file.mv(__dirname + '/../reports/' + filename, function (err) {
             if (err) {
@@ -39,27 +47,89 @@ module.exports = function (app, passport) {
                 return res.redirect('/submit-cbcr');
             }
 
-            CbcReport = {
-                id: 123,
-                name: filename,
-                financialYear: req.body.financialYear,
-                mne_id: req.user.mne_id,
-                dataFile: file,
-                subsidiaryCountryCodes: [req.body.selected_countries]
-            };
+            if (req.body.reupload == "true") {
+                // Reupload an CbC Report for selected financial year
+                let oldReportID = req.body.reportID;
+                let args = {
+                    data: {
+                        "$class": "org.acme.cbcreporting.UpdateCbcReport",
+                        "reportID": oldReportID,
+                        "reportName": filename,
+                        "mneID": req.user.mne_id,
+                        "dataFile": base64_encode(__dirname + '/../reports/' + filename),
+                        "financialYear": parseInt(req.body.financialYear),
+                        "subsidiaryCountryCode": [req.body.selected_countries]
+                    },
+                    headers: { "Content-Type": "application/json" }
+                };
 
-            // CbcReport will be passed over to Hyperledger Fabric to commit to the blockchain
-            // console.log(JSON.stringify(CbcReport));
-            req.flash('uploadSuccess', true);
-            res.redirect('/submit-cbcr');
+                client.post("http://" + ipAddr + ":3001/api/org.acme.cbcreporting.UpdateCbcReport", args, function (data, response) {
+                    if (response.statusCode == "200") {
+                        req.flash('uploadSuccess', true);
+                    } else {
+                        req.flash('uploadSuccess', false);
+                    }
+                    res.redirect('/submit-cbcr');
+                });
+            } else {
+                // New CbC Report will be committed to the blockchain
+                let args = {
+                    data: {
+                        "$class": "org.acme.cbcreporting.CreateCbcReport",
+                        "reportID": reportID,
+                        "reportName": filename,
+                        "mneID": req.user.mne_id,
+                        "dataFile": base64_encode(__dirname + '/../reports/' + filename),
+                        "financialYear": parseInt(req.body.financialYear),
+                        "subsidiaryCountryCode": [req.body.selected_countries]
+                    },
+                    headers: { "Content-Type": "application/json" }
+                };
+
+                client.post("http://" + ipAddr + ":3001/api/org.acme.cbcreporting.CreateCbcReport", args, function (data, response) {
+                    if (response.statusCode == "200") {
+                        req.flash('uploadSuccess', true);
+                    } else {
+                        req.flash('uploadSuccess', false);
+                    }
+                    res.redirect('/submit-cbcr');
+                });
+            }
         });
     });
 
     // ===========================
     // Manage CbCR Page ==========
     // ===========================
+
+    // Get the list of CbC Reports submitted by the MNE
     app.get('/manage-cbcr', isLoggedIn, function (req, res) {
-        res.render('manage-cbcr', { user: req.user });
+        client.get("http://" + ipAddr + ":3001/api/queries/RetrieveCbcReportListMNEP?mneID=" + req.user.mne_id, function (data, response) {
+            res.render('manage-cbcr', { reports: data, user: req.user });
+        });
+    });
+
+    // Download specific CbC Report
+    app.get('/download-cbcr', isLoggedIn, function (req, res) {
+        client.get("http://" + ipAddr + ":3001/api/queries/RetrieveCbcReportMNEP?reportID=" + req.query.reportID, function (data, response) {
+            var bitmap = new Buffer(data[0].dataFile, 'base64')
+            var fileContents = Buffer.from(bitmap);
+            var readStream = new stream.PassThrough();
+            readStream.end(fileContents);
+            res.set('Content-disposition', 'attachment; filename=' + data[0].reportName);
+            res.set('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+            readStream.pipe(res);
+        });
+    });
+
+    // Reupload specific CbC Report
+    app.post('/resubmit-cbcr', isLoggedIn, function (req, res) {
+        let args = {
+            "reportID": req.body.rID,
+            "financialYear": req.body.FY,
+            "subsidiaryCountryCode": req.body.subsidiaries
+        };
+        res.render('submit-cbcr', { uploadStatus: req.flash('uploadSuccess'), reupload: true, reportArgs: args, user: req.user });
     });
 
     // ===========================
@@ -71,10 +141,18 @@ module.exports = function (app, passport) {
     });
 };
 
-// check if the user has logged in to the system
+// Check if the user has logged in to the system
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated())
         return next();
 
     res.redirect('/');
+}
+
+// function to encode CbC Report (.xlsx) to base64 encoded string
+function base64_encode(file) {
+    // read binary data
+    var bitmap = fs.readFileSync(file);
+    // convert binary data to base64 encoded string
+    return new Buffer(bitmap).toString('base64');
 }
