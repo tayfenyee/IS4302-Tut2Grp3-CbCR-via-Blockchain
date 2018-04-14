@@ -40,48 +40,6 @@ function createCbcReport(cbcreport) {
         });
 }
 
-
-//retrieveCbcReportList
-/**
- * 
- * @param {org.acme.cbcreporting.RetrieveCbcReportList} retrieveCbcReportList - the retrieveCbcReportList transaction
- * @transaction
- */
-/*function retrieveCbcReportList(retrieverequest) {
-    //Search for the list of cbc reports for a mne that the mne has submitted - by mneID
-    var querymne = buildQuery('SELECT org.acme.cbcreporting.CbcReport WHERE ' + 'mneID==_$mneParam');
-    //Execute the query
-    return query(querymne, { mneParam: searchrequest.mneID })
-        .then(function (results) {
-            var jsonArray = [];
-            for (var n = 0; n < results.length; n++) {
-                var report = results[n]; // 
-                var serializer = getSerializer();
-                var jsonOfReport = serializer.toJSON(asset);
-                jsonArray.add(jsonOfReport);
-            }
-            return jsonArray;
-        })
-}*/
-
-//retrieveCbcReport
-/**
- * 
- * @param {org.acme.cbcreporting.RetrieveCbcReport} retrieveCbcReport - the retrieveCbcReport transaction
- * @transaction
- */
-/*function retrieveCbcReport(retrieverequest) {
-    //Returns CbcReport datafile based on id. returns {dataFile: xxxx} if found / returns {status:'fail'} if not found
-    return getAssetRegistry('org.acme.cbcreporting.CbcReport')
-        .then(function (reportRegistry) {
-            var reportResource = reportRegistry.get(retrieverequest);
-            var reportDataFile = { dataFile: reportResource.dataFile };
-            var jsonDataFile = JSON.stringify(reportDataFile)
-            return jsonDataFile;
-        });
-}*/
-
-
 //UpdateCbcReport
 /**
  * 
@@ -129,21 +87,21 @@ function updateCbcReport(cbcreport) {
 * @transaction
 */
 function endorseCbcReport(request) {
-   //Inputs: String reportID
-   //Conditions: CbcReport is not endorsed , CbcReport>SharedNode>TaxAuthority == CurrentParticipant
-   //Get requestor aka TaxAuthority's partnerTaxAuth
-   return getAssetRegistry('org.acme.cbcreporting.CbcReport')
-   .then(function(cbcregistry){
-       return cbcregistry.get(request.reportID)
-  		.then(function(cbcreport){
-       cbcreport.isEndorsed = "true";
-       cbcreport.endorseDate = request.timestamp.toString();
-       //Need to add in the shared country list
-       var currentTaxAuthResource = getCurrentParticipant();
-       cbcreport.sharedCountryList = currentTaxAuthResource.partnerTaxAuth;
-       return cbcregistry.update(cbcreport);
-       })
-   })
+    //Inputs: String reportID
+    //Conditions: CbcReport is not endorsed , CbcReport>SharedNode>TaxAuthority == CurrentParticipant
+    //Get requestor aka TaxAuthority's partnerTaxAuth
+    return getAssetRegistry('org.acme.cbcreporting.CbcReport')
+        .then(function (cbcregistry) {
+            return cbcregistry.get(request.reportID)
+                .then(function (cbcreport) {
+                    cbcreport.isEndorsed = "true";
+                    cbcreport.endorseDate = request.timestamp.toString();
+                    //Need to add in the shared country list
+                    var currentTaxAuthResource = getCurrentParticipant();
+                    cbcreport.sharedCountryList = currentTaxAuthResource.partnerTaxAuth;
+                    return cbcregistry.update(cbcreport);
+                })
+        })
 }
 
 //Add Partner Tax Authority - to add Tax Authority from PartnerTaxAuth
@@ -158,10 +116,10 @@ function addPartnerTaxAuthority(request) {
     return getParticipantRegistry('org.acme.cbcreporting.TaxAuthority')
         .then(function (taxAuthorityRegistry) {
             return taxAuthorityRegistry.get(request.taxAuthID)
-            .then(function(taxAuthToUpdate){
-                taxAuthToUpdate.partnerTaxAuth.push(request.countryCode);
-                return taxAuthorityRegistry.update(taxAuthToUpdate);
-            })
+                .then(function (taxAuthToUpdate) {
+                    taxAuthToUpdate.partnerTaxAuth.push(request.countryCode);
+                    return taxAuthorityRegistry.update(taxAuthToUpdate);
+                })
         })
 }
 
@@ -178,16 +136,9 @@ function removePartnerTaxAuthority(request) {
     return getParticipantRegistry('org.acme.cbcreporting.TaxAuthority')
         .then(function (taxAuthorityRegistry) {
             return taxAuthorityRegistry.get(request.taxAuthID)
-            .then(function(taxAuthToUpdate){
-                taxAuthToUpdate.partnerTaxAuth = taxAuthToUpdate.partnerTaxAuth.filter(function(e){return e !== request.countryCode});
-                return taxAuthorityRegistry.update(taxAuthToUpdate);
-            })
+                .then(function (taxAuthToUpdate) {
+                    taxAuthToUpdate.partnerTaxAuth = taxAuthToUpdate.partnerTaxAuth.filter(function (e) { return e !== request.countryCode });
+                    return taxAuthorityRegistry.update(taxAuthToUpdate);
+                })
         })
 }
-
-
-
-
-
-
-
