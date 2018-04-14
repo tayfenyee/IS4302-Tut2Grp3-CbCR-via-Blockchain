@@ -1,0 +1,44 @@
+/**
+ * New query file
+ */
+query RetrieveCbcReportListMNEP {
+    description: "RetrieveAllCbcReportSubmitted-MNEPORTAL"
+    statement:
+        SELECT org.acme.cbcreporting.CbcReport 
+  			WHERE (mneID == _$mneID)
+}
+
+query RetrieveCbcReportMNEP {
+    description: "RetrieveSingleCbcReportSubmitted-MNEPORTAL"
+    statement:
+        SELECT org.acme.cbcreporting.CbcReport
+  			WHERE (reportID == _$reportID)
+}
+
+query RetrieveCbcReportListTAP{
+	description: "Get all reports by TA - Tax Authority Portal"
+  	statement:
+		SELECT org.acme.cbcreporting.CbcReport
+}
+
+query RetrieveCbcReportTAP{
+	description: "Get that one report by reportID - Tax Authority Portal"
+  	statement:
+        SELECT org.acme.cbcreporting.CbcReport
+  			WHERE (reportID == _$reportID)
+}
+
+query RetrieveCbcReportFilterTAP{
+	description: "Get all pending endorsement reports by TA and (MneID or FY) - Tax Authority Portal"
+  	statement:
+		SELECT org.acme.cbcreporting.CbcReport
+  		WHERE (mneID == _$mneID OR financialYear == _$financialYear)
+}
+
+query RetrieveCbcReportFilterBothTAP{
+	description: "Get all pending endorsement reports by TA and (MneID or FY) - Tax Authority Portal"
+  	statement:
+		SELECT org.acme.cbcreporting.CbcReport
+  		WHERE (financialYear == _$financialYear AND mneID == _$mneID)
+}
+
