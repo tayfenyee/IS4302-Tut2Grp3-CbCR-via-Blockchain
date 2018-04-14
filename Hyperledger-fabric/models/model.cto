@@ -5,14 +5,9 @@ namespace org.acme.cbcreporting
 
 /**
  * PARTICIPANTS
- * Regulator - reguID
  * TaxAuthority - taxAuthID
  * SharedNode - nodeID
  */
-participant Regulator identified by reguID 
-{
-  o String reguID
-}
 
 participant TaxAuthority identified by taxAuthID
 {
@@ -53,7 +48,7 @@ asset CbcReport identified by reportID {
  * 
  */
 
- //SharedNode
+//SharedNode
 
 transaction CreateCbcReport {
   o String reportID
@@ -72,7 +67,8 @@ transaction UpdateCbcReport {
   o String financialYear
   o String[] subsidiaryCountryCode
 }
- //TaxAuthority
+
+//TaxAuthority
 
 transaction EndorseCbcReport {
   o String reportID
