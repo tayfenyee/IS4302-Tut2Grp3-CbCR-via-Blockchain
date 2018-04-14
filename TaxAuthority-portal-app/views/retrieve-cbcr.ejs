@@ -4,10 +4,12 @@
 <head>
     <meta charset="utf-8" />
     <link rel="apple-touch-icon" sizes="76x76" href="img/apple-icon.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="img/favicon.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="img/favicon-<%= taxAuth %>.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>Tax Authority Portal &mdash; Singapore</title>
+    <title>Tax Authority Portal &mdash;
+        <%= countryCode %>
+    </title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -48,19 +50,19 @@
                         </a>
                     </li>
                     <li>
-                        <a href="endorse">
+                        <a href="/endorse">
                             <i class="ti-flag-alt"></i>
                             <p>Endorsement</p>
                         </a>
                     </li>
                     <li class="active">
-                        <a href="retrieve">
+                        <a href="/retrieve">
                             <i class="ti-cloud-down"></i>
                             <p>Retrieval</p>
                         </a>
                     </li>
                     <li>
-                        <a href="partners">
+                        <a href="/partners">
                             <i class="ti-user"></i>
                             <p>Partner Tax Authorities</p>
                         </a>
@@ -73,7 +75,10 @@
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <a class="navbar-brand" href="#">IRAS &mdash; Singapore</a>
+                        <a class="navbar-brand" href="#">
+                            <%= taxAuth %> &mdash;
+                                <%= countryCode %>
+                        </a>
                     </div>
                 </div>
             </nav>
@@ -88,36 +93,62 @@
                                     <p class="category">Filter CbC Reports by MNE ID and Financial Year</p>
                                 </div>
                                 <div class="content">
-                                    <form action="" method="POST">
+                                    <form action="/retrieve-filter" method="POST">
                                         <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label for="name">MNE ID</label>
-                                                    <input type="text" name="mneID" class="form-control border-input" value="" placeholder="Enter MNE ID" required>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label for="name">Financial Year</label>
-                                                    <select name="financialYear" class="form-control border-input" required>
-                                                        <option value="" selected disabled>Select Financial Year</option>
-                                                        <option value="2016">FY2016</option>
-                                                        <option value="2017">FY2017</option>
-                                                        <option value="2018">FY2018</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-1">
-                                                <div class="form-group">
-                                                    <div class="text-center" style="padding-top:1.8em; font-size:1.3em;">
-                                                        <a href="">
-                                                            <i class="ti-search"></i>
-                                                        </a>
+                                            <% if (filter == null) { %>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="name">MNE ID</label>
+                                                        <input type="text" name="mneID" class="form-control border-input" value="" placeholder="Enter MNE ID">
                                                     </div>
                                                 </div>
-                                            </div>
+
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label for="name">Financial Year</label>
+                                                        <select name="financialYear" class="form-control border-input">
+                                                            <option value="">Select Financial Year</option>
+                                                            <option value="2016">FY2016</option>
+                                                            <option value="2017">FY2017</option>
+                                                            <option value="2018">FY2018</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <% } else { %>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="name">MNE ID</label>
+                                                            <input type="text" name="mneID" class="form-control border-input" value="<%= filter.mneFilter %>" placeholder="Enter MNE ID">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="name">Financial Year</label>
+                                                            <select name="financialYear" class="form-control border-input">
+                                                                <option value="">Select Financial Year</option>
+                                                                <option value="2016" <% if (filter.fyFilter==='2016' ) { %>
+                                                                    <%="selected"%>
+                                                                        <% } %>>FY2016</option>
+                                                                <option value="2017" <% if (filter.fyFilter==='2017' ) { %>
+                                                                    <%="selected"%>
+                                                                        <% } %>>FY2017</option>
+                                                                <option value="2018" <% if (filter.fyFilter==='2018' ) { %>
+                                                                    <%="selected"%>
+                                                                        <% } %>>FY2018</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <% } %>
+                                                        <div class="col-md-1">
+                                                            <div class="form-group">
+                                                                <div class="text-center" style="padding-top:1.8em; font-size:1.3em;">
+                                                                    <a href="#" onclick="$(this).closest('form').submit(); return false;">
+                                                                        <i class="ti-search"></i>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                         </div>
                                     </form>
                                 </div>
@@ -132,34 +163,55 @@
                             <div class="card">
                                 <div class="header">
                                     <h4 class="title">List of CbC Reports</h4>
-                                    <p class="category">CbC Reports submitted by MNEs that are pending endorsement</p>
+                                    <p class="category">CbC Reports endorsed by partner Tax Authorities</p>
                                 </div>
                                 <div class="content table-responsive table-full-width">
-                                    <table class="table table-striped">
-                                        <thead>
-                                            <th>ID</th>
-                                            <th>Name</th>
-                                            <th>MNE</th>
-                                            <th>Financial Year</th>
-                                            <th>Subsidiary Countries</th>
-                                            <th>Action</th>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Report Name 1</td>
-                                                <td>SG-MNE1</td>
-                                                <td>2017</td>
-                                                <td>AU, CA, SG</td>
-                                                <td>
-                                                    <a href="">
-                                                        <i class="ti-download"></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-
+                                    <% if (reports.length > 0) { %>
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <th>ID</th>
+                                                <th>Report</th>
+                                                <th>MNE</th>
+                                                <th>FY</th>
+                                                <th>Country</th>
+                                                <th>Endorsed Date</th>
+                                                <th>Action</th>
+                                            </thead>
+                                            <tbody>
+                                                <% for (i=0; i<reports.length; i++) { 
+                                                    if (reports[i].isEndorsed === "true") { %>
+                                                    <tr>
+                                                        <td>
+                                                            <%= reports[i].reportID %>
+                                                        </td>
+                                                        <td>
+                                                            <%= reports[i].reportName %>
+                                                        </td>
+                                                        <td>
+                                                            <%= reports[i].mneID %>
+                                                        </td>
+                                                        <td>
+                                                            <%= reports[i].financialYear %>
+                                                        </td>
+                                                        <td>
+                                                            <%= reports[i].sharedNode.split('#')[1] %>
+                                                        </td>
+                                                        <td>
+                                                            <%= reports[i].endorseDate.split(' ')[0] %>
+                                                        </td>
+                                                        <td>
+                                                            <a href="/download-endorsed-cbcr?reportID=<%= reports[i].reportID %>">
+                                                                <i class="ti-download"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                    <% }
+                                                 } %>
+                                            </tbody>
+                                        </table>
+                                        <% } else { %>
+                                            <p style="padding:10px 0 0 30px;">No report found.</p>
+                                            <% } %>
                                 </div>
                             </div>
                         </div>

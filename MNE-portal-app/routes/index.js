@@ -2,8 +2,10 @@ const fs = require('fs');
 const stream = require('stream');
 const Client = require('node-rest-client').Client;
 const client = new Client();
-// IP Address of REST Server (Port 3001 for SharedNode SG)
+// IP Address of REST Server
 const ipAddr = "192.168.0.119";
+// Port 3001 for SharedNode SG
+const port = "3001";
 
 module.exports = function (app, passport) {
 
@@ -63,7 +65,7 @@ module.exports = function (app, passport) {
                     headers: { "Content-Type": "application/json" }
                 };
 
-                client.post("http://" + ipAddr + ":3001/api/org.acme.cbcreporting.UpdateCbcReport", args, function (data, response) {
+                client.post("http://" + ipAddr + ":" + port + "/api/org.acme.cbcreporting.UpdateCbcReport", args, function (data, response) {
                     if (response.statusCode == "200") {
                         req.flash('uploadSuccess', true);
                     } else {
@@ -86,7 +88,7 @@ module.exports = function (app, passport) {
                     headers: { "Content-Type": "application/json" }
                 };
 
-                client.post("http://" + ipAddr + ":3001/api/org.acme.cbcreporting.CreateCbcReport", args, function (data, response) {
+                client.post("http://" + ipAddr + ":" + port + "/api/org.acme.cbcreporting.CreateCbcReport", args, function (data, response) {
                     if (response.statusCode == "200") {
                         req.flash('uploadSuccess', true);
                     } else {
@@ -104,14 +106,14 @@ module.exports = function (app, passport) {
 
     // Get the list of CbC Reports submitted by the MNE
     app.get('/manage-cbcr', isLoggedIn, function (req, res) {
-        client.get("http://" + ipAddr + ":3001/api/queries/RetrieveCbcReportListMNEP?mneID=" + req.user.mne_id, function (data, response) {
+        client.get("http://" + ipAddr + ":" + port + "/api/queries/RetrieveCbcReportListMNEP?mneID=" + req.user.mne_id, function (data, response) {
             res.render('manage-cbcr', { reports: data, user: req.user });
         });
     });
 
     // Download specific CbC Report
     app.get('/download-cbcr', isLoggedIn, function (req, res) {
-        client.get("http://" + ipAddr + ":3001/api/queries/RetrieveCbcReportMNEP?reportID=" + req.query.reportID, function (data, response) {
+        client.get("http://" + ipAddr + ":" + port + "/api/queries/RetrieveCbcReportMNEP?reportID=" + req.query.reportID, function (data, response) {
             var bitmap = new Buffer(data[0].dataFile, 'base64')
             var fileContents = Buffer.from(bitmap);
             var readStream = new stream.PassThrough();
