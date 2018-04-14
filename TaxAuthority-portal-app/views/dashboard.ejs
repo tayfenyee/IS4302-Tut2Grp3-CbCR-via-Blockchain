@@ -4,10 +4,12 @@
 <head>
     <meta charset="utf-8" />
     <link rel="apple-touch-icon" sizes="76x76" href="img/apple-icon.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="img/favicon.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="img/favicon-<%= taxAuth %>.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>Tax Authority Portal &mdash; Singapore</title>
+    <title>Tax Authority Portal &mdash;
+        <%= countryCode %>
+    </title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -48,19 +50,19 @@
                         </a>
                     </li>
                     <li>
-                        <a href="endorse">
+                        <a href="/endorse">
                             <i class="ti-flag-alt"></i>
                             <p>Endorsement</p>
                         </a>
                     </li>
                     <li>
-                        <a href="retrieve">
+                        <a href="/retrieve">
                             <i class="ti-cloud-down"></i>
                             <p>Retrieval</p>
                         </a>
                     </li>
                     <li>
-                        <a href="partners">
+                        <a href="/partners">
                             <i class="ti-user"></i>
                             <p>Partner Tax Authorities</p>
                         </a>
@@ -73,7 +75,10 @@
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <a class="navbar-brand" href="#">IRAS &mdash; Singapore</a>
+                        <a class="navbar-brand" href="#">
+                            <%= taxAuth %> &mdash;
+                                <%= countryCode %>
+                        </a>
                     </div>
                 </div>
             </nav>
@@ -93,14 +98,14 @@
                                         <div class="col-xs-7">
                                             <div class="numbers">
                                                 <p>CbC Reports Received</p>
-                                                18
+                                                <%= values.reportReceived %>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="footer">
                                         <hr />
                                         <div class="stats">
-                                            <i class="ti-calendar"></i> For FY2017
+                                            <i class="ti-calendar"></i> For FY2016-2018
                                         </div>
                                     </div>
                                 </div>
@@ -118,7 +123,7 @@
                                         <div class="col-xs-7">
                                             <div class="numbers">
                                                 <p>Pending Endorsement</p>
-                                                3
+                                                <%= values.pendingEndorsement %>
                                             </div>
                                         </div>
                                     </div>
@@ -144,7 +149,7 @@
                                         <div class="col-xs-7">
                                             <div class="numbers">
                                                 <p>Ready for Retrieval</p>
-                                                +40
+                                                <%= values.reportReady %>
                                             </div>
                                         </div>
                                     </div>
@@ -170,7 +175,7 @@
                                         <div class="col-xs-7">
                                             <div class="numbers">
                                                 <p>Partner Tax Authorities</p>
-                                                10
+                                                <%= values.partnersNum %>
                                             </div>
                                         </div>
                                     </div>
@@ -178,13 +183,13 @@
                                         <hr />
                                         <div class="stats">
                                             <i class="ti-pencil-alt"></i>
-                                            <a href="partners">Update</a> list of partner tax authorities
+                                            <a href="partners">Update</a> list of partners
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>                    
+                    </div>
                 </div>
             </div>
 

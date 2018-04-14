@@ -1,4 +1,5 @@
 <!DOCTYPE HTML>
+
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -122,57 +123,59 @@
 						<div class="col-md-12 animate-box">
 							<h3>Submitted CbC Reports</h3>
 							<div class="table-responsive">
-								<table class="table">
-									<thead>
-										<tr>
-											<th>Report ID</th>
-											<th>Financial Year</th>
-											<th>Submission Date</th>
-											<th>CbC Report File</th>
-											<th>Subsidiary Countries</th>
-											<th>Action</th>
-										</tr>
-									</thead>
-									<tbody>
-										<% if (reports.length > 0) {
-												for (i=0; i<reports.length; i++) { %>
+								<% if (reports.length > 0) { %>
+									<table class="table">
+										<thead>
 											<tr>
-												<td>
-													<%= reports[i].reportID %>
-												</td>
-												<td>FY
-													<%= reports[i].financialYear %>
-												</td>
-												<td>
-													<%= reports[i].createdDate.split(' ')[0] %>
-												</td>
-												<td>
-													<a href="/download-cbcr?reportID=<%= reports[i].reportID %>">
-														<%= reports[i].reportName %>
-													</a>
-												</td>
-												<td>
-													<%= reports[i].subsidiaryCountryCode %>
-												</td>
-												<td>
-													<% if (!reports[i].isEndorsed) { %>
-														<form action="/resubmit-cbcr" method="POST">
-															<input type="hidden" value="<%= reports[i].reportID %>" name="rID">
-															<input type="hidden" value="<%= reports[i].financialYear %>" name="FY">
-															<input type="hidden" value="<%= reports[i].subsidiaryCountryCode %>" name="subsidiaries">
-															<a href="#" onclick="$(this).closest('form').submit(); return false;">
-																<span class="ti_icon size-default corner-default">
-																	<i class="ti-upload"></i>
-																</span>
-															</a>
-														</form>
-														<% } %>
-												</td>
+												<th>Report ID</th>
+												<th>Financial Year</th>
+												<th>Submission Date</th>
+												<th>CbC Report File</th>
+												<th>Subsidiary Countries</th>
+												<th>Action</th>
 											</tr>
-											<% } 
-										} %>
-									</tbody>
-								</table>
+										</thead>
+										<tbody>
+											<% for (i=0; i<reports.length; i++) { %>
+												<tr>
+													<td>
+														<%= reports[i].reportID %>
+													</td>
+													<td>FY
+														<%= reports[i].financialYear %>
+													</td>
+													<td>
+														<%= reports[i].createdDate.split(' ')[0] %>
+													</td>
+													<td>
+														<a href="/download-cbcr?reportID=<%= reports[i].reportID %>">
+															<%= reports[i].reportName %>
+														</a>
+													</td>
+													<td>
+														<%= reports[i].subsidiaryCountryCode %>
+													</td>
+													<td>
+														<% if (!reports[i].isEndorsed) { %>
+															<form action="/resubmit-cbcr" method="POST">
+																<input type="hidden" value="<%= reports[i].reportID %>" name="rID">
+																<input type="hidden" value="<%= reports[i].financialYear %>" name="FY">
+																<input type="hidden" value="<%= reports[i].subsidiaryCountryCode %>" name="subsidiaries">
+																<a href="#" onclick="$(this).closest('form').submit(); return false;">
+																	<span class="ti_icon size-default corner-default">
+																		<i class="ti-upload"></i>
+																	</span>
+																</a>
+															</form>
+															<% } %>
+													</td>
+												</tr>
+												<% } %>
+										</tbody>
+									</table>
+									<% } else { %>
+										No report found.
+										<% } %>
 							</div>
 						</div>
 					</div>
