@@ -149,8 +149,8 @@ POC to implement CbC report sharing using blockchain
   - For each REST server, open a new terminal and issue this command to connect to the docker container:
     <pre><code>docker exec -it cli bash
     </code></pre>
-  - Once connected to the docker container, run this command inside the docker container:  <b>replace \<port\> and \<card-name\> according to the table above
-    <pre><code>composer-rest-server -p \<port\> -c \<card-name\>
+  - Once connected to the docker container, run this command inside the docker container:  <b>replace [port] and [card-name] according to the table above
+    <pre><code>composer-rest-server -p [port] -c [card-name]
     </code></pre>
 
 # Test Cases
