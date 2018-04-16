@@ -36,7 +36,7 @@ POC to implement CbC report sharing using blockchain
       - 3002:3002
       - 3003:3003
     </code></pre>
-  - Start playground by inputting the following into the composer playground terminal
+  - Start playground
     <pre><code><b>~/fabric-tutorial-vagrant/composer-playground$</b> ./playground.sh down
     <b>~/fabric-tutorial-vagrant/composer-playground$</b> ./playground.sh -f docker-compose-couch.yaml up
     </code></pre>
