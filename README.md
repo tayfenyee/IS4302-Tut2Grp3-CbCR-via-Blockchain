@@ -19,13 +19,9 @@ POC to implement CbC report sharing using blockchain
   config.vm.network :forwarded_port, guest: 3002, host: 3002  
   config.vm.network :forwarded_port, guest: 3003, host: 3003  
   </code></pre>
-<b><p>4) Source Code</p></b>
-- Download <code>MNE-portal-app</code> and <code>Tax-Authority-portal-app</code> from this repo to your PC
-  - Open cmd.exe at the folder path and issue the following command:
-    <pre><code><b>\MNE-portal-app></b> npm install
-    <b>\TaxAuthority-portal-app></b> npm install
-    </code></pre>
-- Download <code>Hyperledger-fabric</code> from this repo to your PC
+  
+ <b><p>4) Hyperledger Fabric</p></b>
+  - Download <code>Hyperledger-fabric</code> from this repo to your PC
   - Start <b>Vagrant</b>
   - Go to <b>Cloud 9</b> and issue the following commands:
     <pre><code><b>~/fabric-tutorial-vagrant/composer-playground$</b> docker pull hyperledger/fabric-couchdb:x86_64-1.0.4
@@ -40,6 +36,7 @@ POC to implement CbC report sharing using blockchain
       - 3002:3002
       - 3003:3003
     </code></pre>
+
 <b><p>5) Deploy Network</p></b>
   - Start playground
     <pre><code><b>~/fabric-tutorial-vagrant/composer-playground$</b> ./playground.sh down
@@ -94,6 +91,13 @@ POC to implement CbC report sharing using blockchain
       <td>org.acme.cbcreporting.TaxAuthority#HMRC</td>
     </tr>
     </table>
+
+<b><p>6) Source Code</p></b>
+- Download <code>MNE-portal-app</code> and <code>Tax-Authority-portal-app</code> from this repo to your PC
+  - Open cmd.exe at the folder path and issue the following command:
+    <pre><code><b>\MNE-portal-app></b> npm install
+    <b>\TaxAuthority-portal-app></b> npm install
+    </code></pre>
     
 # Preparing Test Data
 <b><p>1) MySQL</p></b>
