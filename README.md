@@ -44,7 +44,7 @@ POC to implement CbC report sharing using blockchain
   - <b>Import</b> the BNA file into composer playground
   - <b>Deploy</b> the BNA file with the following settings:
   ![Alt img](Hyperledger-fabric/setup-guide/network-deployment.jpeg?raw=true)
-  - Issue new identities:
+  - Issue <b>new identities</b>:
     <table>
     <tr>
       <th>ID Name</th>
@@ -92,7 +92,7 @@ POC to implement CbC report sharing using blockchain
   
 <b><p>2) In Hyperledger Composer</p></b>
 - Create Participants
-  - In registry: org.acme.cbcreporting.TaxAuthority
+  - In registry: <b>org.acme.cbcreporting.TaxAuthority</b>
     <pre><code>{
       "$class": "org.acme.cbcreporting.TaxAuthority",
       "taxAuthID": "IRAS",
@@ -109,7 +109,7 @@ POC to implement CbC report sharing using blockchain
       "partnerTaxAuth": ["SG"]
     }
     </code></pre>
-  - In registry: org.acme.cbcreporting.SharedNode
+  - In registry: <b>org.acme.cbcreporting.SharedNode</b>
     <pre><code>{
       "$class": "org.acme.cbcreporting.SharedNode",
       "nodeID": "SG",
