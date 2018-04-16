@@ -38,7 +38,7 @@ POC to implement CbC report sharing using blockchain
     </code></pre>
   - Start playground by inputting the following into the composer playground terminal
     <pre><code><i>~/fabric-tutorial-vagrant/composer-playground$</i> ./playground.sh down
-    <i>~/fabric-tutorial-vagrant/composer-playground$<i> ./playground.sh -f docker-compose-couch.yaml up
+    <b>~/fabric-tutorial-vagrant/composer-playground$</b> ./playground.sh -f docker-compose-couch.yaml up
     </code></pre>
   - Go to http://localhost:8080
   - <b>Import</b> the BNA file into composer playground
