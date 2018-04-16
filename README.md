@@ -42,6 +42,8 @@ POC to implement CbC report sharing using blockchain
     </code></pre>
   - Go to http://localhost:8080
   - Import the <b>BNA file</b> into composer playground
+  - Deploy the BNA file with the following settings:
+  ![Alt text](Hyperledger-fabric/setup-guide/network-deployment.jpeg?raw=true "Settings")
     
 # Preparing Test Data
 <b><p>1) MySQL</p></b>
