@@ -44,7 +44,7 @@ POC to implement CbC report sharing using blockchain
     
 # Preparing Test Data
 <b><p>1) MySQL</p></b>
-- Open MySQL Command Line Client
+- Open <b>MySQL Command Line Client</b>
 - Issue the following commands:
   <pre><code>mysql> CREATE DATABASE mne_portal;
   mysql> USE mne_portal;
