@@ -55,6 +55,14 @@ rule TaxAuthorityViewOtherReport {
   	action: ALLOW
 }
 
+rule AlllAccess {
+  description: "AllAccess - grant everything to everybody"
+  participant: "org.acme.cbcreporting.TaxAuthority"
+  operation: ALL
+  resource: "org.acme.cbcreporting.TaxAuthority"
+  action: ALLOW
+}
+
 rule DenyAccessOnReport {
 	description: "Deny access on report"
   	participant: "**"
@@ -70,3 +78,5 @@ rule AllAccess {
   resource: "org.hyperledger.composer.system.**"
   action: ALLOW
 }
+
+
