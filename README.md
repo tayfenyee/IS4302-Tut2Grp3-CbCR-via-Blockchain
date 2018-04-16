@@ -146,9 +146,8 @@ POC to implement CbC report sharing using blockchain
       <td>localhost:3003</td>
     </tr>
     </table>
-  - For each REST server, open a new terminal and issue these commands:
+  - For each REST server, open a new terminal and issue this commands:
     <pre><code>docker exec -it cli bash
-    composer-rest-server -p <port> -c <card-name>
     </code></pre>
-
+    
 # Test Cases
