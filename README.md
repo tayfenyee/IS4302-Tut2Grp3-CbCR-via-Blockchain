@@ -168,3 +168,7 @@ POC to implement CbC report sharing using blockchain
   - Tax Authority portal (HMRC) can be accessed via http://localhost:4003
 
 # Test Cases
+<b><p>1) MNEs based in Singapore to submit and manage their CbC Reports through MNE Portal(SG)</p></b>
+<b><p>2) IRAS to review and endorse CbC Reports</p></b>
+<b><p>3) IRAS to manage its partner tax authorities</p></b>
+<b><p>4) HMRC to retrieve CbC Reports endorsed by IRAS</p></b>
