@@ -43,11 +43,11 @@ POC to implement CbC report sharing using blockchain
   - Go to http://localhost:8080
   - <b>Import</b> the BNA file into composer playground
   - <b>Deploy</b> the BNA file with the following settings:
-  ![Alt text](Hyperledger-fabric/setup-guide/network-deployment.jpeg?raw=true)
+  ![Alt img](Hyperledger-fabric/setup-guide/network-deployment.jpeg?raw=true)
   - Issue new identity
-  ![Alt text](Hyperledger-fabric/setup-guide/iras-id.jpeg?raw=true)
-  ![Alt text](Hyperledger-fabric/setup-guide/hmrc-id.jpeg?raw=true)
-  ![Alt text](Hyperledger-fabric/setup-guide/sg-sharednode-id.jpeg?raw=true)
+  ![Alt img](Hyperledger-fabric/setup-guide/iras-id.jpeg?raw=true)
+  ![Alt img](Hyperledger-fabric/setup-guide/hmrc-id.jpeg?raw=true)
+  ![Alt img](Hyperledger-fabric/setup-guide/sg-sharednode-id.jpeg?raw=true)
     
 # Preparing Test Data
 <b><p>1) MySQL</p></b>
