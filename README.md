@@ -68,11 +68,11 @@ POC to implement CbC report sharing using blockchain
 <b><p>1) MySQL</p></b>
 - Open <b>MySQL Command Line Client</b>
 - Issue the following commands:
-  <pre><code>mysql> CREATE DATABASE mne_portal;
-  mysql> USE mne_portal;
-  mysql> CREATE TABLE mne_info (mne_id VARCHAR(20) PRIMARY KEY, password CHAR(60));
-  mysql> INSERT INTO mne_info (mne_id, password) VALUES ("SG-MNE1", "$2a$10$o.2XRGhNP6U7mk0kBLoP1OERyDgMWmBzh6X58bhNhvHlCiomdo2pi");
-  mysql> INSERT INTO mne_info (mne_id, password) VALUES ("SG-MNE2", "$2a$10$o.2XRGhNP6U7mk0kBLoP1OERyDgMWmBzh6X58bhNhvHlCiomdo2pi");
+  <pre><code><b>mysql></b> CREATE DATABASE mne_portal;
+  <b>mysql></b> USE mne_portal;
+  <b>mysql></b> CREATE TABLE mne_info (mne_id VARCHAR(20) PRIMARY KEY, password CHAR(60));
+  <b>mysql></b> INSERT INTO mne_info (mne_id, password) VALUES ("SG-MNE1", "$2a$10$o.2XRGhNP6U7mk0kBLoP1OERyDgMWmBzh6X58bhNhvHlCiomdo2pi");
+  <b>mysql></b> INSERT INTO mne_info (mne_id, password) VALUES ("SG-MNE2", "$2a$10$o.2XRGhNP6U7mk0kBLoP1OERyDgMWmBzh6X58bhNhvHlCiomdo2pi");
   </code></pre>
 - Two sets of credentials will be created (password is hashed):
   <table>
