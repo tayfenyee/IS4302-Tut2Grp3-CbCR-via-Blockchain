@@ -40,6 +40,7 @@ POC to implement CbC report sharing using blockchain
       - 3002:3002
       - 3003:3003
     </code></pre>
+<b><p>5) Deploy Network</p></b>
   - Start playground
     <pre><code><b>~/fabric-tutorial-vagrant/composer-playground$</b> ./playground.sh down
     <b>~/fabric-tutorial-vagrant/composer-playground$</b> ./playground.sh -f docker-compose-couch.yaml up
@@ -48,7 +49,33 @@ POC to implement CbC report sharing using blockchain
   - <b>Import</b> the BNA file into composer playground
   - <b>Deploy</b> the BNA file with the following settings:
   ![Alt img](Hyperledger-fabric/setup-guide/network-deployment.jpeg?raw=true)
-  - Issue <b>new identities</b>:
+  - Create <b>Participants</b>
+    - In registry: <b>org.acme.cbcreporting.TaxAuthority</b>
+      <pre><code>{
+        "$class": "org.acme.cbcreporting.TaxAuthority",
+        "taxAuthID": "IRAS",
+        "taxAuthName": "IRAS",
+        "countryCode": "SG",
+        "partnerTaxAuth": ["AU","CA","ID","NZ","UK"]
+      }
+
+      {
+        "$class": "org.acme.cbcreporting.TaxAuthority",
+        "taxAuthID": "HMRC",
+        "taxAuthName": "HMRC",
+        "countryCode": "UK",
+        "partnerTaxAuth": ["SG"]
+      }
+      </code></pre>
+    - In registry: <b>org.acme.cbcreporting.SharedNode</b>
+      <pre><code>{
+        "$class": "org.acme.cbcreporting.SharedNode",
+        "nodeID": "SG",
+        "nodeName": "SG shared Node",
+        "taxAuth": "resource:org.acme.cbcreporting.TaxAuthority#IRAS"
+      }
+      </code></pre>
+  - Issue <b>New Identities</b>
     <table>
     <tr>
       <th>ID Name</th>
@@ -93,33 +120,8 @@ POC to implement CbC report sharing using blockchain
     <td>p@ssw0rd</td>
   </tr>
   </table>
-  
-<b><p>2) In Hyperledger Composer</p></b>
-- Create Participants
-  - In registry: <b>org.acme.cbcreporting.TaxAuthority</b>
-    <pre><code>{
-      "$class": "org.acme.cbcreporting.TaxAuthority",
-      "taxAuthID": "IRAS",
-      "taxAuthName": "IRAS",
-      "countryCode": "SG",
-      "partnerTaxAuth": ["AU","CA","ID","NZ","UK"]
-    }
 
-    {
-      "$class": "org.acme.cbcreporting.TaxAuthority",
-      "taxAuthID": "HMRC",
-      "taxAuthName": "HMRC",
-      "countryCode": "UK",
-      "partnerTaxAuth": ["SG"]
-    }
-    </code></pre>
-  - In registry: <b>org.acme.cbcreporting.SharedNode</b>
-    <pre><code>{
-      "$class": "org.acme.cbcreporting.SharedNode",
-      "nodeID": "SG",
-      "nodeName": "SG shared Node",
-      "taxAuth": "resource:org.acme.cbcreporting.TaxAuthority#IRAS"
-    }
-    </code></pre>
+# Run
+<b><p></p></b>
 
 # Test Cases
