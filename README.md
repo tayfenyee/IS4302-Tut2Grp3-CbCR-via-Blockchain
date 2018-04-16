@@ -13,7 +13,7 @@ POC to implement CbC report sharing using blockchain
 
 <b><p>3) Vagrant</p></b>
 - Setup Vagrant according to this <a href="https://github.com/suenchunhui/fabric-tutorial-vagrant">link</a>
-- Edit the Vagrantfile to open up ports used to expose composer REST server. Append the following near towards the end of the Vagrantfile
+- Edit the <code>Vagrantfile</code> to open up ports used to expose composer REST server. Append the following near towards the end of the <code>Vagrantfile</code>
   <pre><code>config.vm.network :forwarded_port, guest: 3000, host: 3000  
   config.vm.network :forwarded_port, guest: 3001, host: 3001  
   config.vm.network :forwarded_port, guest: 3002, host: 3002  
@@ -40,7 +40,7 @@ POC to implement CbC report sharing using blockchain
     <pre><code>./playground.sh down
     ./playground.sh -f docker-compose-couch.yaml up
     </code></pre>
-  - Import the BNA file into the playground
+  - Import the <b>BNA file</b> into composer playground
     
 # Preparing Test Data
 <b><p>1) MySQL</p></b>
