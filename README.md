@@ -153,7 +153,11 @@ POC to implement CbC report sharing using blockchain
     <pre><code>composer-rest-server -p [port] -c [card-name]
     </code></pre>
 
-<b><p>2) Start <code>MNE-portal-app</code> and <code>Tax-Authority-portal-app</code></p></b>
+<b><p>2) Start MySQL service</p></b>
+  - Run <b>services.msc</b>
+  - Right click on MySQL57 and select Start
+
+<b><p>3) Start <code>MNE-portal-app</code> and <code>Tax-Authority-portal-app</code></p></b>
   - Open <b>cmd.exe</b> and navigate to the folder path
   - Issue the following commands:
     <pre><code><b>\MNE-portal-app></b> node app.js
