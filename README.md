@@ -24,9 +24,9 @@ POC to implement CbC report sharing using blockchain
 - Download <code>Hyperledger-fabric</code> from this repo to your PC
   - Start <b>Vagrant</b>
   - Go to <b>Cloud 9</b> and issue the following commands:
-    <pre><code>docker pull hyperledger/fabric-couchdb:x86_64-1.0.4
-    docker tag hyperledger/fabric-couchdb:x86_64-1.0.4 hyperledger/fabric-couchdb:latest
-    git pull
+    <pre><code><i>~/fabric-tutorial-vagrant/composer-playground$</i> docker pull hyperledger/fabric-couchdb:x86_64-1.0.4
+    <i>~/fabric-tutorial-vagrant/composer-playground$</i> docker tag hyperledger/fabric-couchdb:x86_64-1.0.4 hyperledger/fabric-couchdb:latest
+    <i>~/fabric-tutorial-vagrant/composer-playground$</i> git pull
     </code></pre>
   - Edit <code>docker-compose-couch.yaml</code> file, append the following to the ports subsection near the end of the file
     <pre><code>ports:
@@ -37,8 +37,8 @@ POC to implement CbC report sharing using blockchain
       - 3003:3003
     </code></pre>
   - Start playground by inputting the following into the composer playground terminal
-    <pre><code>~/fabric-tutorial-vagrant/composer-playground$ ./playground.sh down
-    ~/fabric-tutorial-vagrant/composer-playground$ ./playground.sh -f docker-compose-couch.yaml up
+    <pre><code><i>~/fabric-tutorial-vagrant/composer-playground$</i> ./playground.sh down
+    <i>~/fabric-tutorial-vagrant/composer-playground$<i> ./playground.sh -f docker-compose-couch.yaml up
     </code></pre>
   - Go to http://localhost:8080
   - <b>Import</b> the BNA file into composer playground
