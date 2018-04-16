@@ -45,10 +45,9 @@ POC to implement CbC report sharing using blockchain
   - <b>Deploy</b> the BNA file with the following settings:
   ![Alt img](Hyperledger-fabric/setup-guide/network-deployment.jpeg?raw=true)
   - Issue new identity
-  <img src="Hyperledger-fabric/setup-guide/iras-id.jpeg" style="width: 200px;"/>
-  ![Alt img](Hyperledger-fabric/setup-guide/iras-id.jpeg?raw=true)
-  ![Alt img](Hyperledger-fabric/setup-guide/hmrc-id.jpeg?raw=true)
-  ![Alt img](Hyperledger-fabric/setup-guide/sg-sharednode-id.jpeg?raw=true)
+    <img src="Hyperledger-fabric/setup-guide/iras-id.jpeg" style="height: 50px;"/>
+    <img src="Hyperledger-fabric/setup-guide/hmrc-id.jpeg" style="height: 50px;"/>
+    <img src="Hyperledger-fabric/setup-guide/sg-sharednode-id.jpeg" style="height: 50px;"/>
     
 # Preparing Test Data
 <b><p>1) MySQL</p></b>
