@@ -28,7 +28,7 @@ function createCbcReport(cbcreport) {
             newcbcr.mneID = cbcreport.mneID;
             newcbcr.dataFile = cbcreport.dataFile;
             newcbcr.financialYear = cbcreport.financialYear;
-            newcbcr.subsidiaryCountryCode = cbcreport.subsidiaryCountryCode;
+            newcbcr.subsidiaryCountryCode = cbcreport.subsidiaryCountryCode[0].split(",");
             newcbcr.sharedNode = newRel;
             newcbcr.isEndorsed = "false";
             newcbcr.sharedCountryList = [];
@@ -56,7 +56,7 @@ function updateCbcReport(cbcreport) {
             //Get the specific report from the report asset registry
             return reportRegistry.get(cbcreport.reportID)
                 .then(function (cbcrtoupdate) {
-                    if (cbcrtoupdate.isEndorsed) {
+                    if (cbcrtoupdate.isEndorsed == "true") {
                         throw new Error('Unable to update, report is already endorsed');
                     }
                     if (cbcrtoupdate.mneID != cbcreport.mneID) {
@@ -79,7 +79,6 @@ function updateCbcReport(cbcreport) {
         });
     //Function to update the cbcreport  
 }
-
 //Endorse CbC Report - For TaxAuthority to endorse a CbC report
 /**
 *
@@ -94,15 +93,22 @@ function endorseCbcReport(request) {
    .then(function(cbcregistry){
        return cbcregistry.get(request.reportID)
   		.then(function(cbcreport){
-       cbcreport.isEndorsed = "true";
-       cbcreport.endorseDate = request.timestamp.toString();
-       //Need to add in the shared country list
-       var currentTaxAuthResource = getCurrentParticipant();
-       cbcreport.sharedCountryList = currentTaxAuthResource.partnerTaxAuth;
-       return cbcregistry.update(cbcreport);
-       })
-   })
+         cbcreport.isEndorsed = "true";
+         cbcreport.endorseDate = request.timestamp.toString();
+         //Need to add in the shared country list
+         var currentTaxAuthResource = getCurrentParticipant();
+         var output = [currentTaxAuthResource.countryCode];
+         for (var i=0;i<currentTaxAuthResource.partnerTaxAuth.length;i++){
+           if(cbcreport.subsidiaryCountryCode.includes(currentTaxAuthResource.partnerTaxAuth[i])){
+             output.push(currentTaxAuthResource.partnerTaxAuth[i]);
+           }
+         }
+         cbcreport.sharedCountryList = output;
+         return cbcregistry.update(cbcreport);
+         })
+   	})
 }
+
 
 //Add Partner Tax Authority - to add Tax Authority from PartnerTaxAuth
 /**

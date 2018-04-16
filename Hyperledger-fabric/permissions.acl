@@ -28,21 +28,104 @@ rule NetworkAdminSystem {
     action: ALLOW
 }
 
+rule SharedNodeCanCreateCbcReportTransaction {
+    description: "SharedNodes can create CbcReport transaction"
+    participant: "org.acme.cbcreporting.SharedNode"
+    operation: CREATE
+    resource: "org.acme.cbcreporting.CreateCbcReport"
+    action: ALLOW
+}
+rule SharedNodeCanCreateCbcReport {
+    description: "SharedNodes can create CbcReports only through CbcReport transaction"
+    participant: "org.acme.cbcreporting.SharedNode"
+    operation: CREATE
+    resource: "org.acme.cbcreporting.CbcReport"
+  	transaction: "org.acme.cbcreporting.CreateCbcReport"
+    action: ALLOW
+}
+
+rule SharedNodeCanRead {
+    description: "SharedNodes view cbcreport they created"
+    participant(p): "org.acme.cbcreporting.SharedNode"
+    operation: READ
+    resource(c): "org.acme.cbcreporting.CbcReport"
+    condition: (c.sharedNode.getIdentifier() == p.getIdentifier())
+    action: ALLOW
+}
+
+rule SharedNodeCanCreateUpdateTransaction {
+    description: "SharedNode can create the update transaction"
+    participant: "org.acme.cbcreporting.SharedNode"
+    operation: CREATE
+  	resource: "org.acme.cbcreporting.UpdateCbcReport"
+    action: ALLOW
+}
+
+rule SharedNodeCanSeeTA{
+	description: "SharedNode can see TA"
+  	participant: "org.acme.cbcreporting.SharedNode"
+  	operation: READ
+    resource: "org.acme.cbcreporting.TaxAuthority"
+  	action: ALLOW
+}
+rule SharedNodeCanUpdate {
+    description: "SharedNodes can edit the cbcreports they have created only if it is not endorsed and if it is done throug UpdateCbcReport transaction"
+    participant(p): "org.acme.cbcreporting.SharedNode"
+    operation: UPDATE
+    resource(c): "org.acme.cbcreporting.CbcReport"
+  	transaction: "org.acme.cbcreporting.UpdateCbcReport"
+    condition: ((c.sharedNode.getIdentifier() == p.getIdentifier())&&(c.isEndorsed=="false"))
+    action: ALLOW
+}
+
+rule SharedNodeViewOwnReport{
+	description: "Grant MNE rights to view own reports"
+  	participant(h): "org.acme.cbcreporting.SharedNode"
+  	operation: ALL
+    resource(m): "org.acme.cbcreporting.CbcReport"
+  	condition: (m.sharedNode.getIdentifier() == h.getIdentifier())
+  	action: ALLOW
+}
+
+rule TaxAuthCanCreateEndorseTransaction {
+    description: "TaxAuthority can create the endorseTransaction"
+    participant: "org.acme.cbcreporting.TaxAuthority"
+    operation: CREATE
+    resource: "org.acme.cbcreporting.EndorseCbcReport"
+    action: ALLOW
+}
+
+rule TaxAuthCanRemovePartnerTaxAuthority {
+    description: "TaxAuthority can create the endorseTransaction"
+    participant: "org.acme.cbcreporting.TaxAuthority"
+    operation: CREATE
+    resource: "org.acme.cbcreporting.RemovePartnerTaxAuthority"
+    action: ALLOW
+}
+
+rule TaxAuthCanAddPartnerTaxAuthority {
+    description: "TaxAuthority can create the endorseTransaction"
+    participant: "org.acme.cbcreporting.TaxAuthority"
+    operation: CREATE
+    resource: "org.acme.cbcreporting.AddPartnerTaxAuthority"
+    action: ALLOW
+}
+
+rule TaxAuthCaEditCbcReportThroughEndorse {
+    description: "TaxAuthority update CbcReports only through endorsement"
+    participant: "org.acme.cbcreporting.TaxAuthority"
+    operation: UPDATE
+    resource: "org.acme.cbcreporting.CbcReport"
+  	transaction: "org.acme.cbcreporting.EndorseCbcReport"
+    action: ALLOW
+}
+
 rule TaxAuthorityViewOwnReport {
 	description: "Grant TA rights to view own jurisdiction reports"
   	participant(h): "org.acme.cbcreporting.TaxAuthority"
   	operation: ALL
     resource(m): "org.acme.cbcreporting.CbcReport"
   	condition: (m.sharedNode.taxAuth.getIdentifier() == h.getIdentifier())
-  	action: ALLOW
-}
-
-rule MNEViewOwnReport{
-	description: "Grant MNE rights to view own reports"
-  	participant(h): "org.acme.cbcreporting.SharedNode"
-  	operation: ALL
-    resource(m): "org.acme.cbcreporting.CbcReport"
-  	condition: (m.sharedNode.getIdentifier() == h.getIdentifier())
   	action: ALLOW
 }
 
@@ -55,12 +138,29 @@ rule TaxAuthorityViewOtherReport {
   	action: ALLOW
 }
 
-rule AlllAccess {
-  description: "AllAccess - grant everything to everybody"
-  participant: "org.acme.cbcreporting.TaxAuthority"
-  operation: ALL
-  resource: "org.acme.cbcreporting.TaxAuthority"
-  action: ALLOW
+rule TaxAuthorityViewSharedNode {
+	description: "TA view own sharedNode"
+  	participant: "org.acme.cbcreporting.TaxAuthority"
+  	operation: ALL
+    resource: "org.acme.cbcreporting.SharedNode"
+  	action: ALLOW
+}
+
+rule TaxAuthorityViewOtherSharedNode {
+	description: "TA view other sharedNode"
+  	participant(h): "org.acme.cbcreporting.TaxAuthority"
+  	operation: READ
+    resource: "org.acme.cbcreporting.SharedNode"
+  	condition: (m.TaxAuth.getIdentifier() != h.getIdentifier())
+  	action: ALLOW
+}
+
+rule TaxAuthoritySeesOtherTaxAuthority {
+	description: "TA view other sharedNode"
+  	participant: "org.acme.cbcreporting.TaxAuthority"
+  	operation: ALL
+    resource: "org.acme.cbcreporting.TaxAuthority"
+  	action: ALLOW
 }
 
 rule DenyAccessOnReport {
@@ -78,5 +178,4 @@ rule AllAccess {
   resource: "org.hyperledger.composer.system.**"
   action: ALLOW
 }
-
 
