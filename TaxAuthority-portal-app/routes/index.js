@@ -2,7 +2,7 @@ const Client = require('node-rest-client').Client;
 const stream = require('stream');
 const client = new Client();
 // IP Address of REST Server
-const ipAddr = "192.168.0.119";
+const ipAddr = "localhost";
 
 module.exports = function (app, taxAuth, port) {
 
