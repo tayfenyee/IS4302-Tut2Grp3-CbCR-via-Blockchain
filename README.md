@@ -36,7 +36,7 @@ POC to implement CbC report sharing using blockchain
       - 3002:3002
       - 3003:3003
     </code></pre>
-  - Start playground by inputting the following into the cloud9 composer playground terminal
+  - Start playground by inputting the following into the composer playground terminal
     <pre><code>./playground.sh down
     ./playground.sh -f docker-compose-couch.yaml up
     </code></pre>
