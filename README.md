@@ -94,7 +94,7 @@ POC to implement CbC report sharing using blockchain
 
 <b><p>6) Source Code</p></b>
 - Download <code>MNE-portal-app</code> and <code>Tax-Authority-portal-app</code> from this repo to your PC
-  - Open cmd.exe at the folder path and issue the following command:
+  - Open <b>cmd.exe</b>, navigate to the folder path and issue the following commands:
     <pre><code><b>\MNE-portal-app></b> npm install
     <b>\TaxAuthority-portal-app></b> npm install
     </code></pre>
@@ -153,8 +153,8 @@ POC to implement CbC report sharing using blockchain
     <pre><code>composer-rest-server -p [port] -c [card-name]
     </code></pre>
 
-<b><p>2) Start MNE-portal-app and Tax-Authority-portal-app</p></b>
-  - Open cmd.exe and go to the file path
+<b><p>2) Start <code>MNE-portal-app</code> and <code>Tax-Authority-portal-app</code></p></b>
+  - Open <b>cmd.exe</b> and navigate to the folder path
   - Issue the following commands:
     <pre><code><b>\MNE-portal-app></b> node app.js
     <b>\TaxAuthority-portal-app></b> node app.js
