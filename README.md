@@ -44,10 +44,25 @@ POC to implement CbC report sharing using blockchain
   - <b>Import</b> the BNA file into composer playground
   - <b>Deploy</b> the BNA file with the following settings:
   ![Alt img](Hyperledger-fabric/setup-guide/network-deployment.jpeg?raw=true)
-  - Issue new identity
-    <img src="Hyperledger-fabric/setup-guide/iras-id.jpeg" style="width:48;"/>
-    <img src="Hyperledger-fabric/setup-guide/hmrc-id.jpeg" style="height: 50px;"/>
-    <img src="Hyperledger-fabric/setup-guide/sg-sharednode-id.jpeg" style="height: 50px;"/>
+  - Issue new identities:
+    <table>
+    <tr>
+      <th>ID Name</th>
+      <th>Participant</th>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+    </tr>
+    </table>
     
 # Preparing Test Data
 <b><p>1) MySQL</p></b>
@@ -76,5 +91,40 @@ POC to implement CbC report sharing using blockchain
   </table>
   
 <b><p>2) In Hyperledger Composer</p></b>
+- Create Participants
+  - In registry: org.acme.cbcreporting.TaxAuthority
+    <pre><code>{
+  "$class": "org.acme.cbcreporting.TaxAuthority",
+  "taxAuthID": "IRAS",
+  "taxAuthName": "IRAS",
+  "countryCode": "SG",
+  "partnerTaxAuth": [
+    "AU",
+    "CA",
+    "ID",
+    "NZ",
+    "UK"
+  ]
+}
+
+{
+  "$class": "org.acme.cbcreporting.TaxAuthority",
+  "taxAuthID": "HMRC",
+  "taxAuthName": "HMRC",
+  "countryCode": "UK",
+  "partnerTaxAuth": [
+    "SG"
+  ]
+}
+    </code></pre>
+  - In registry: org.acme.cbcreporting.SharedNode
+    <pre><code>
+{
+  "$class": "org.acme.cbcreporting.SharedNode",
+  "nodeID": "SG",
+  "nodeName": "SG shared Node",
+  "taxAuth": "resource:org.acme.cbcreporting.TaxAuthority#IRAS"
+}
+    </code></pre>
 
 # Test Cases
