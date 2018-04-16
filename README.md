@@ -21,6 +21,10 @@ POC to implement CbC report sharing using blockchain
   </code></pre>
 <b><p>4) Source Code</p></b>
 - Download <code>MNE-portal-app</code> and <code>Tax-Authority-portal-app</code> from this repo to your PC
+  - Open cmd.exe at the folder path and issue the following command:
+    <pre><code><b>\MNE-portal-app></b> npm install
+    <b>\TaxAuthority-portal-app></b> npm install
+    </code></pre>
 - Download <code>Hyperledger-fabric</code> from this repo to your PC
   - Start <b>Vagrant</b>
   - Go to <b>Cloud 9</b> and issue the following commands:
