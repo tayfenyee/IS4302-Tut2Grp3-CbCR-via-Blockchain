@@ -3,7 +3,7 @@ const stream = require('stream');
 const Client = require('node-rest-client').Client;
 const client = new Client();
 // IP Address of REST Server
-const ipAddr = "192.168.0.119";
+const ipAddr = "localhost";
 // Port 3001 for SharedNode SG
 const port = "3001";
 
