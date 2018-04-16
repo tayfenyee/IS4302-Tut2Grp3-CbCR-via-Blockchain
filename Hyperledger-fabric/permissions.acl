@@ -70,11 +70,3 @@ rule AllAccess {
   resource: "org.hyperledger.composer.system.**"
   action: ALLOW
 }
-
-rule AlllAccess {
-  description: "AllAccess - grant everything to everybody"
-  participant: "**"
-  operation: ALL
-  resource: "**"
-  action: ALLOW
-}

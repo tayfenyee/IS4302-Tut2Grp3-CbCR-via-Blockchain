@@ -8,7 +8,6 @@ namespace org.acme.cbcreporting
  * TaxAuthority - taxAuthID
  * SharedNode - nodeID
  */
-
 participant TaxAuthority identified by taxAuthID
 {
   o String taxAuthID
@@ -48,7 +47,7 @@ asset CbcReport identified by reportID {
  * 
  */
 
-//SharedNode
+ //SharedNode
 
 transaction CreateCbcReport {
   o String reportID
@@ -67,8 +66,7 @@ transaction UpdateCbcReport {
   o String financialYear
   o String[] subsidiaryCountryCode
 }
-
-//TaxAuthority
+ //TaxAuthority
 
 transaction EndorseCbcReport {
   o String reportID
