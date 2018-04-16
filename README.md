@@ -51,16 +51,16 @@ POC to implement CbC report sharing using blockchain
       <th>Participant</th>
     </tr>
     <tr>
-      <td></td>
-      <td></td>
+      <td>SGSHAREDNODE</td>
+      <td>org.acme.cbcreporting.SharedNode#SG</td>
     </tr>
     <tr>
-      <td></td>
-      <td></td>
+      <td>IRAS</td>
+      <td>org.acme.cbcreporting.TaxAuthority#IRAS</td>
     </tr>
     <tr>
-      <td></td>
-      <td></td>
+      <td>HMRC</td>
+      <td>org.acme.cbcreporting.TaxAuthority#HMRC</td>
     </tr>
     </table>
     
@@ -94,37 +94,28 @@ POC to implement CbC report sharing using blockchain
 - Create Participants
   - In registry: org.acme.cbcreporting.TaxAuthority
     <pre><code>{
-  "$class": "org.acme.cbcreporting.TaxAuthority",
-  "taxAuthID": "IRAS",
-  "taxAuthName": "IRAS",
-  "countryCode": "SG",
-  "partnerTaxAuth": [
-    "AU",
-    "CA",
-    "ID",
-    "NZ",
-    "UK"
-  ]
-}
+      "$class": "org.acme.cbcreporting.TaxAuthority",
+      "taxAuthID": "IRAS",
+      "taxAuthName": "IRAS",
+      "countryCode": "SG",
+      "partnerTaxAuth": ["AU","CA","ID","NZ","UK"]
+    }
 
-{
-  "$class": "org.acme.cbcreporting.TaxAuthority",
-  "taxAuthID": "HMRC",
-  "taxAuthName": "HMRC",
-  "countryCode": "UK",
-  "partnerTaxAuth": [
-    "SG"
-  ]
-}
+    {
+      "$class": "org.acme.cbcreporting.TaxAuthority",
+      "taxAuthID": "HMRC",
+      "taxAuthName": "HMRC",
+      "countryCode": "UK",
+      "partnerTaxAuth": ["SG"]
+    }
     </code></pre>
   - In registry: org.acme.cbcreporting.SharedNode
-    <pre><code>
-{
-  "$class": "org.acme.cbcreporting.SharedNode",
-  "nodeID": "SG",
-  "nodeName": "SG shared Node",
-  "taxAuth": "resource:org.acme.cbcreporting.TaxAuthority#IRAS"
-}
+    <pre><code>{
+      "$class": "org.acme.cbcreporting.SharedNode",
+      "nodeID": "SG",
+      "nodeName": "SG shared Node",
+      "taxAuth": "resource:org.acme.cbcreporting.TaxAuthority#IRAS"
+    }
     </code></pre>
 
 # Test Cases
