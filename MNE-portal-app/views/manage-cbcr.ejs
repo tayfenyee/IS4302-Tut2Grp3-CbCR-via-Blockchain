@@ -156,7 +156,7 @@
 														<%= reports[i].subsidiaryCountryCode %>
 													</td>
 													<td>
-														<% if (!reports[i].isEndorsed) { %>
+														<% if (reports[i].isEndorsed == "false") { %>
 															<form action="/resubmit-cbcr" method="POST">
 																<input type="hidden" value="<%= reports[i].reportID %>" name="rID">
 																<input type="hidden" value="<%= reports[i].financialYear %>" name="FY">
