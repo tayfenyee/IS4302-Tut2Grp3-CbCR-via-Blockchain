@@ -37,9 +37,10 @@ POC to implement CbC report sharing using blockchain
       - 3003:3003
     </code></pre>
   - Start playground by inputting the following into the composer playground terminal
-    <pre><code>./playground.sh down
-    ./playground.sh -f docker-compose-couch.yaml up
+    <pre><code>~/fabric-tutorial-vagrant/composer-playground$ ./playground.sh down
+    ~/fabric-tutorial-vagrant/composer-playground$ ./playground.sh -f docker-compose-couch.yaml up
     </code></pre>
+  - Go to http://localhost:8080
   - Import the <b>BNA file</b> into composer playground
     
 # Preparing Test Data
