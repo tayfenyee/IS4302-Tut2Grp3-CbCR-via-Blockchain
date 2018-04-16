@@ -131,7 +131,7 @@ POC to implement CbC report sharing using blockchain
     <table>
     <tr>
       <th>Card Name</th>
-      <thIP Address</th>
+      <th>IP Address:Port</th>
     </tr>
     <tr>
       <td>SGSHAREDNODE@cbcreporting</td>
@@ -146,5 +146,9 @@ POC to implement CbC report sharing using blockchain
       <td>localhost:3003</td>
     </tr>
     </table>
+  - For each REST server, open a new terminal and issue these commands:
+    <pre><code>docker exec -it cli bash
+    composer-rest-server -p <port> -c <card-name>
+    </code></pre>
 
 # Test Cases
