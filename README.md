@@ -126,6 +126,25 @@ POC to implement CbC report sharing using blockchain
   </table>
 
 # Run
-<b><p></p></b>
+<b><p>1) Host REST Servers</p></b>
+  - A total of 3 REST servers are hosted:
+    <table>
+    <tr>
+      <th>Card Name</th>
+      <thIP Address</th>
+    </tr>
+    <tr>
+      <td>SGSHAREDNODE@cbcreporting</td>
+      <td>localhost:3001</td>
+    </tr>
+    <tr>
+      <td>IRAS@cbcreporting</td>
+      <td>localhost:3002</td>
+    </tr>
+    <tr>
+      <td>HMRC@cbcreporting</td>
+      <td>localhost:3003</td>
+    </tr>
+    </table>
 
 # Test Cases
