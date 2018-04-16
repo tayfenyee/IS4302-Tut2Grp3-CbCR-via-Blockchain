@@ -159,8 +159,8 @@ POC to implement CbC report sharing using blockchain
     <pre><code><b>\MNE-portal-app></b> node app.js
     <b>\TaxAuthority-portal-app></b> node app.js
     </code></pre>
-  - MNE portal can be accessed via http://localhost:3001
-  - Tax Authority portal (IRAS) can be accessed via http://localhost:3002
-  - Tax Authority portal (HMRC) can be accessed via http://localhost:3003
+  - MNE portal can be accessed via http://localhost:4001
+  - Tax Authority portal (IRAS) can be accessed via http://localhost:4002
+  - Tax Authority portal (HMRC) can be accessed via http://localhost:4003
 
 # Test Cases
