@@ -3,7 +3,7 @@ const stream = require('stream');
 const Client = require('node-rest-client').Client;
 const client = new Client();
 // IP Address of REST Server
-const ipAddr = "172.25.104.35";
+const ipAddr = "localhost";
 // Port 3001 for SharedNode SG
 const port = "3001";
 
@@ -60,7 +60,7 @@ module.exports = function (app, passport) {
                         "mneID": req.user.mne_id,
                         "dataFile": base64_encode(__dirname + '/../reports/' + filename),
                         "financialYear": parseInt(req.body.financialYear),
-                        "subsidiaryCountryCode": req.body.selected_countries
+                        "subsidiaryCountryCode": [req.body.selected_countries]
                     },
                     headers: { "Content-Type": "application/json" }
                 };
