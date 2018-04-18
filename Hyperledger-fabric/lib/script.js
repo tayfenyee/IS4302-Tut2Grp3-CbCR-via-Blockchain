@@ -70,7 +70,7 @@ function updateCbcReport(cbcreport) {
                     //Update report Name , datafile , subsidiary country code
                     cbcrtoupdate.reportName = cbcreport.reportName;
                     cbcrtoupdate.dataFile = cbcreport.dataFile;
-                    cbcrtoupdate.subsidiaryCountryCode = cbcreport.subsidiaryCountryCode;
+                    cbcrtoupdate.subsidiaryCountryCode = cbcreport.subsidiaryCountryCode[0].split(",");;
                     reportRegistry.update(cbcrtoupdate);
                     var statusObj = { status: 'success' };
                     var jsonStatus = JSON.stringify(statusObj);
