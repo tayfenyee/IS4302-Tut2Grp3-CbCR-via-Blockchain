@@ -171,18 +171,30 @@ POC to implement CbC report sharing using blockchain
 # Test Cases
 <b><p>1) MNEs based in Singapore to submit and manage their CbC Reports through MNE Portal(SG)</p></b>
   <ol type="i">
-  <li>Submit CbC Report</li>
+  <li><b>Submit CbC Report</b>
     <ul>
-      <li>- Go to http://localhost:4001</li>
-      <li>- Login as <code>SG-MNE1</code> with password as <code>p@ssw0rd</code></li>
-      <li>- Navigate to <b>Submit CbCR</b></li>
-      <li>- Submit CbC Report with the following values:</li>
+      <li>Go to http://localhost:4001</li>
+      <li>Login as <code>SG-MNE1</code> with password as <code>p@ssw0rd</code></li>
+      <li>Navigate to <code>Submit CbCR</code></li>
+      <li>Submit CbC Report with the following values:</li>
       <ul>
         <li><b>Financial Year:</b> 2016</li>
         <li><b>Subsidiary Countries:</b> SG, CA</li>
         <li><b>Report File:</b> SG-MNE1_FY2016.xlsx (stored in the subfolder named "reports")</li>
       </ul>
+      <li>You will be able to see the uploaded CbC Report under "Manage CbCR" page</li>
     </ul>
+  </li>
+  <li><b>Download and Resubmit CbC Report</b>
+    <ul>
+      <li>Navigate to <code>Manage CbCR</code></li>
+      <li>Click on the filename <code>SG-MNE1_FY2016.xlsx</code> to download the report</li>
+      <li>Click on "Resubmit" button</li>
+      <li>Select new <b>Subsidiary Countries:</b> SG, CA, UK</li>
+      <li>Edit some of fields in the CbC report downloaded and reupload it</li>
+      <li>The changes will be reflected accordingly under "Manage CbCR" page</li>
+    </ul>
+  </li>
   </ol>
 <b><p>2) IRAS to review and endorse CbC Reports</p></b>
 <b><p>3) IRAS to manage its partner tax authorities</p></b>
