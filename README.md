@@ -185,6 +185,7 @@ POC to implement CbC report sharing using blockchain
       <li>You will be able to see the uploaded CbC Report under "Manage CbCR" page</li>
     </ul>
   </li>
+  
   <li><b>Download and Resubmit CbC Report</b>
     <ul>
       <li>Navigate to <code>Manage CbCR</code></li>
@@ -195,7 +196,36 @@ POC to implement CbC report sharing using blockchain
       <li>The changes will be reflected accordingly under "Manage CbCR" page</li>
     </ul>
   </li>
+  
+  <li><b>Submit CbC Report as SG-MNE2</b>
+    <ul>
+      <li>Repeat part i as SG-MNE2 (password = p@ssw0rd)</li>
+      <li>Submit CbC Report with the following values:</li>
+      <ul>
+        <li><b>Financial Year:</b> 2017</li>
+        <li><b>Subsidiary Countries:</b> SG, ID, NZ</li>
+        <li><b>Report File:</b> SG-MNE2_FY2017.xlsx (stored in the subfolder named "reports")</li>
+      </ul>
+    </ul>
+  </li>
   </ol>
+  
 <b><p>2) IRAS to review and endorse CbC Reports</p></b>
-<b><p>3) IRAS to manage its partner tax authorities</p></b>
-<b><p>4) HMRC to retrieve CbC Reports endorsed by IRAS</p></b>
+  <ol type="i">
+  <li><b>Filter and Review CbC Report</b>
+    <ul>
+      <li>Go to http://localhost:4002</li>
+      <li>Navigate to <code>Endorse</code></li>
+      <li>Filter the reports by:</li>
+      <ul>
+        <li>SG-MNE1 + FY2016</li>
+        <li>FY2018 (No results found)</li>
+        <li>SG-MNE2</li>
+      </ul>
+      <li>Click on <code>SG-MNE1_FY2016.xlsx</code> to download the CbC Report</li>
+      <li>Click on "Endorse Report" to endorse report</li>
+    </ul>
+  </li>
+  </ol>
+<b><p>3) HMRC to retrieve CbC Reports endorsed by IRAS</p></b>
+<b><p>4) HMRC to manage its partner tax authorities</p></b>
