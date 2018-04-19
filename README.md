@@ -185,7 +185,7 @@ POC to implement CbC report sharing using blockchain
       <li>You will be able to see the uploaded CbC Report under "Manage CbCR" page</li>
     </ul>
   </li>
-  
+  <br/>
   <li><b>Download and Resubmit CbC Report</b>
     <ul>
       <li>Navigate to <code>Manage CbCR</code></li>
@@ -196,7 +196,7 @@ POC to implement CbC report sharing using blockchain
       <li>The changes will be reflected accordingly under "Manage CbCR" page</li>
     </ul>
   </li>
-  
+  <br/>
   <li><b>Submit CbC Report as SG-MNE2</b>
     <ul>
       <li>Repeat part i as SG-MNE2 (password = p@ssw0rd)</li>
@@ -211,21 +211,43 @@ POC to implement CbC report sharing using blockchain
   </ol>
   
 <b><p>2) IRAS to review and endorse CbC Reports</p></b>
-  <ol type="i">
-  <li><b>Filter and Review CbC Report</b>
+  <ul>
+    <li>Go to http://localhost:4002</li>
+    <li>Navigate to <code>Endorse</code></li>
+    <li>Filter the reports by:</li>
     <ul>
-      <li>Go to http://localhost:4002</li>
-      <li>Navigate to <code>Endorse</code></li>
-      <li>Filter the reports by:</li>
-      <ul>
-        <li>SG-MNE1 + FY2016</li>
-        <li>FY2018 (No results found)</li>
-        <li>SG-MNE2</li>
-      </ul>
-      <li>Click on <code>SG-MNE1_FY2016.xlsx</code> to download the CbC Report</li>
-      <li>Click on "Endorse Report" to endorse report</li>
+      <li>SG-MNE1 + FY2016</li>
+      <li>FY2018 (No results found)</li>
+      <li>SG-MNE2</li>
+    </ul>
+    <li>Click on <code>SG-MNE1_FY2016.xlsx</code> to download the CbC Report</li>
+    <li>Click on "Endorse Report" to endorse both reports <code>SG-MNE1_FY2016.xlsx</code> and <code>SG-MNE2_FY2017.xlsx</code></li>
+  </ul>
+  
+<b><p>3) HMRC to retrieve CbC Reports endorsed by IRAS</p></b>
+  <ul>
+    <li>Go to http://localhost:4003</li>
+    <li>Navigate to <code>Retrieve</code></li>
+    <li>Notice that HMRC is only able to view report submitted by SG-MNE1 but not SG-MNE2 (because SG-MNE2 has no subsidiaries in UK)</li>
+    <li>Click on <code>SG-MNE1_FY2016.xlsx</code> to download the CbC Report</li>
+  </ul>
+  
+<b><p>4) HMRC to manage its partner tax authorities</p></b>
+  <ol type="i">
+  <li><b>Add partner tax authority</b>
+    <ul>
+      <li>Navigate to <code>Partner Tax Authority</code></li>
+      <li>Click on "Add New Partner" button</li>
+      <li>Enter "NZ" as the country code to be added</li>
+      <li>Click on "Submit" button and the new partner tax authority will be added</li>
+    </ul>
+  </li>
+  <br>
+  <li><b>Remove partner tax authority</b>
+    <ul>
+      <li>Navigate to <code>Partner Tax Authority</code></li>
+      <li>Click on "Delete" button</li>
+      <li>The partner tax authority will be deleted</li>
     </ul>
   </li>
   </ol>
-<b><p>3) HMRC to retrieve CbC Reports endorsed by IRAS</p></b>
-<b><p>4) HMRC to manage its partner tax authorities</p></b>
