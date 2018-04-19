@@ -170,6 +170,14 @@ POC to implement CbC report sharing using blockchain
 
 # Test Cases
 <b><p>1) MNEs based in Singapore to submit and manage their CbC Reports through MNE Portal(SG)</p></b>
+  i) Submit CbC Report
+    - Go to http://localhost:4001
+    - Login as <code>SG-MNE1</code> with password as <code>p@ssw0rd</code>
+    - Navigate to <b>Submit CbCR</b>
+    - Submit CbC Report with the following values:
+      <b>Financial Year:</b> 2016
+      <b>Subsidiary Countries:</b> SG, CA
+      <b>Report File:</b> SG-MNE1_FY2016.xlsx (stored in the subfolder named "reports")
 <b><p>2) IRAS to review and endorse CbC Reports</p></b>
 <b><p>3) IRAS to manage its partner tax authorities</p></b>
 <b><p>4) HMRC to retrieve CbC Reports endorsed by IRAS</p></b>
