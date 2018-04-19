@@ -7,6 +7,7 @@ POC to implement CbC report sharing using blockchain
 - Select <b>Server Machine</b> as the configuration type
 - Select the option to run MySQL as a service
 - Launch the MySQL Command-Line Client
+- Set user as "root" and password as "admin"
 
 <b><p>2) NodeJS</p></b>
 - Install <a href="https://nodejs.org/en/download/">Node.js</a>
