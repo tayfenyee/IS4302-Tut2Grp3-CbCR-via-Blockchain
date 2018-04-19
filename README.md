@@ -214,14 +214,14 @@ POC to implement CbC report sharing using blockchain
   <ul>
     <li>Go to http://localhost:4002</li>
     <li>Navigate to <code>Endorse</code></li>
-    <li>Filter the reports by:</li>
+    <li>Filter the reports by different criterias, for example:</li>
     <ul>
       <li>SG-MNE1 + FY2016</li>
       <li>FY2018 (No results found)</li>
       <li>SG-MNE2</li>
     </ul>
     <li>Click on <code>SG-MNE1_FY2016.xlsx</code> to download the CbC Report</li>
-    <li>Click on "Endorse Report" to endorse both reports <code>SG-MNE1_FY2016.xlsx</code> and <code>SG-MNE2_FY2017.xlsx</code></li>
+    <li>Endorse both reports <code>SG-MNE1_FY2016.xlsx</code> and <code>SG-MNE2_FY2017.xlsx</code></li>
   </ul>
   
 <b><p>3) HMRC to retrieve CbC Reports endorsed by IRAS</p></b>
@@ -246,7 +246,7 @@ POC to implement CbC report sharing using blockchain
   <li><b>Remove partner tax authority</b>
     <ul>
       <li>Navigate to <code>Partner Tax Authority</code></li>
-      <li>Click on "Delete" button</li>
+      <li>Click on "Delete" button for partner named "ID"</li>
       <li>The partner tax authority will be deleted</li>
     </ul>
   </li>
