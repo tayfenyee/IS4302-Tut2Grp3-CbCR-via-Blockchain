@@ -47,6 +47,10 @@ POC to implement CbC report sharing using blockchain
   - <b>Import</b> the BNA file into composer playground
   - <b>Deploy</b> the BNA file with the following settings:
   ![Alt img](Hyperledger-fabric/setup-guide/network-deployment.jpeg?raw=true)
+  - With the following credentials for network administrator:
+    <pre><code>Enrollment ID: admin
+    Enrollment secret: adminpw
+    </code></pre>
   - Create <b>Participants</b>
     - In registry: <b>org.acme.cbcreporting.TaxAuthority</b>
       <pre><code>{
