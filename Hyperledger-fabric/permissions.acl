@@ -150,7 +150,7 @@ rule TaxAuthorityViewOtherSharedNode {
 rule TaxAuthoritySeesOtherTaxAuthority {
 	description: "TA view other sharedNode"
   	participant: "org.acme.cbcreporting.TaxAuthority"
-  	operation: ALL
+  	operation: READ
     resource: "org.acme.cbcreporting.TaxAuthority"
   	action: ALLOW
 }
