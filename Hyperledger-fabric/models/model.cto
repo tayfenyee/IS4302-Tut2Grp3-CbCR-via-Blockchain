@@ -1,5 +1,6 @@
 /**
  * Defines a data model for a cbc reports
+ * Author: Noah Khoo
  */
 namespace org.acme.cbcreporting
 
