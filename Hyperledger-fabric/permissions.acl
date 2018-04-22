@@ -10,6 +10,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * Author: Noah khoo, Christopher Lim
  */
 
 rule NetworkAdminUser {
@@ -40,7 +42,7 @@ rule SharedNodeCanCreateCbcReport {
     participant: "org.acme.cbcreporting.SharedNode"
     operation: CREATE
     resource: "org.acme.cbcreporting.CbcReport"
-    transaction: "org.acme.cbcreporting.CreateCbcReport"
+  	transaction: "org.acme.cbcreporting.CreateCbcReport"
     action: ALLOW
 }
 
@@ -53,11 +55,19 @@ rule SharedNodeCanRead {
     action: ALLOW
 }
 
+rule SharedNodeCanCreateUpdateTransaction {
+    description: "SharedNode can create the update transaction"
+    participant: "org.acme.cbcreporting.SharedNode"
+    operation: CREATE
+  	resource: "org.acme.cbcreporting.UpdateCbcReport"
+    action: ALLOW
+}
+
 rule SharedNodeCanSeeTA{
 	description: "SharedNode can see TA"
   	participant: "org.acme.cbcreporting.SharedNode"
   	operation: READ
-    	resource: "org.acme.cbcreporting.TaxAuthority"
+    resource: "org.acme.cbcreporting.TaxAuthority"
   	action: ALLOW
 }
 rule SharedNodeCanUpdate {
@@ -65,7 +75,7 @@ rule SharedNodeCanUpdate {
     participant(p): "org.acme.cbcreporting.SharedNode"
     operation: UPDATE
     resource(c): "org.acme.cbcreporting.CbcReport"
-    transaction: "org.acme.cbcreporting.UpdateCbcReport"
+  	transaction: "org.acme.cbcreporting.UpdateCbcReport"
     condition: ((c.sharedNode.getIdentifier() == p.getIdentifier())&&(c.isEndorsed=="false"))
     action: ALLOW
 }
@@ -74,7 +84,7 @@ rule SharedNodeViewOwnReport{
 	description: "Grant MNE rights to view own reports"
   	participant(h): "org.acme.cbcreporting.SharedNode"
   	operation: ALL
-    	resource(m): "org.acme.cbcreporting.CbcReport"
+    resource(m): "org.acme.cbcreporting.CbcReport"
   	condition: (m.sharedNode.getIdentifier() == h.getIdentifier())
   	action: ALLOW
 }
@@ -150,7 +160,7 @@ rule TaxAuthorityViewOtherSharedNode {
 rule TaxAuthoritySeesOtherTaxAuthority {
 	description: "TA view other sharedNode"
   	participant: "org.acme.cbcreporting.TaxAuthority"
-  	operation: READ
+  	operation: ALL
     resource: "org.acme.cbcreporting.TaxAuthority"
   	action: ALLOW
 }
