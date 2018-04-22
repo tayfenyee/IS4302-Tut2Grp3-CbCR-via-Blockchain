@@ -10,7 +10,7 @@ POC to implement CbC report sharing using blockchain
 - Select <b>Development Computer</b> as Config Type
 - Select <b>"Use Legacy Authentication Method"</b> for Authentication Method
 - Select <b>"admin"</b> as MySQL root password
-- Select "Configure MySQL Server as a Windows Service"
+- Select <b>"Configure MySQL Server as a Windows Service"</b> for Windows Service
 - Enter Windows Service Name as <b>"MySQL"</b>
 
 <b><p>2) NodeJS</p></b>
