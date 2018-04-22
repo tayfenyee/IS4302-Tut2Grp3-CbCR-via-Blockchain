@@ -13,6 +13,7 @@ POC to implement CbC report sharing using blockchain
 
 <b><p>2) NodeJS</p></b>
 - Install <a href="https://nodejs.org/en/download/">Node.js</a>
+- Skip this step if NodeJS is already installed in the computer
 
 <b><p>3) Vagrant</p></b>
 - Setup Vagrant according to this <a href="https://github.com/suenchunhui/fabric-tutorial-vagrant">link</a>
