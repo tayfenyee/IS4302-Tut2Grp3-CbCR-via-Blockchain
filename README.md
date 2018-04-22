@@ -163,7 +163,9 @@ POC to implement CbC report sharing using blockchain
     <pre><code><b>~/fabric-tutorial-vagrant/composer-playground$</b> docker exec -it cli bash
     </code></pre>
   - Once connected to the docker container, run this command inside the docker container:  <b>replace [port] and [card-name] according to the table above</b>
-    <pre><code>composer-rest-server -p [port] -c [card-name]
+    <pre><code>composer-rest-server -p localhost:3001 -c SGSHAREDNODE@cbcreporting
+composer-rest-server -p localhost:3002 -c IRAS@cbcreporting
+composer-rest-server -p localhost:3003 -c HMRC@cbcreporting
     </code></pre>
 
 <b><p>2) Start MySQL service</p></b>
