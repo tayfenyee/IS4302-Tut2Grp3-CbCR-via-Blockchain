@@ -138,7 +138,7 @@ POC to implement CbC report sharing using blockchain
 
 # Run
 <b><p>1) Host REST Servers</p></b>
-  - A total of 3 REST servers are hosted:
+  - A total of 3 REST servers would be hosted:
     <table>
     <tr>
       <th>Card Name</th>
