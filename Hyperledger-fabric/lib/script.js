@@ -1,5 +1,6 @@
 /**
  * CBC Script File 
+ * Author: Noah khoo, Christopher Lim
  */
 
 
