@@ -6,7 +6,6 @@ POC to implement CbC report sharing using blockchain
 - Install the <b>MySQL database server only</b> from <a href="https://dev.mysql.com/downloads/installer/">MySQL</a>
 - Select <b>Server Machine</b> as the configuration type
 - Select the option to run MySQL as a service
-- Launch the MySQL Command-Line Client
 - Set <b>user</b> as "root" and <b>password</b> as "admin"
 
 <b><p>2) NodeJS</p></b>
@@ -107,8 +106,9 @@ POC to implement CbC report sharing using blockchain
 # Preparing Test Data
 <b><p>1) MySQL</p></b>
 - Run <b>services.msc</b>
-- Right click on MySQL57 and select Start
+- Right click on MySQL and select Start
 - Open <b>MySQL Command Line Client</b>
+- Enter password as "admin" if being prompted
 - Issue the following commands:
   <pre><code><b>mysql></b> CREATE DATABASE mne_portal;
   <b>mysql></b> USE mne_portal;
@@ -162,7 +162,7 @@ POC to implement CbC report sharing using blockchain
 
 <b><p>2) Start MySQL service</p></b>
   - Run <b>services.msc</b>
-  - Right click on MySQL57 and select Start
+  - Right click on MySQL and select Start
 
 <b><p>3) Start <code>MNE-portal-app</code> and <code>Tax-Authority-portal-app</code></p></b>
   - Open <b>cmd.exe</b> and navigate to the folder path
