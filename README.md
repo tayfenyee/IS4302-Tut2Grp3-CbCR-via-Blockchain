@@ -5,8 +5,10 @@ POC to implement CbC report sharing using blockchain
 <b><p>1) MySQL server</p></b>
 - Install the <b>MySQL Community Server 5.7.2x</b> from <a href="https://dev.mysql.com/downloads/mysql/5.7.html#downloads">MySQL</a>
 - Run MySQL installer
+- Select <b>Server Only</b> for Setup Type
 - Select <b>Standalone MySQL Server</b> for Group Replication
-- Select <b>Server Computer</b> as Config Type
+- Select <b>Development Computer</b> as Config Type
+- Select <b>"Use Legacy Authentication Method"</b> for Authentication Method
 - Select <b>"admin"</b> as MySQL root password
 - Select "Configure MySQL Server as a Windows Service"
 - Enter Windows Service Name as <b>"MySQL"</b>
