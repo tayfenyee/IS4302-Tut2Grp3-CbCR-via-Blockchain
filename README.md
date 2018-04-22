@@ -50,7 +50,7 @@ POC to implement CbC report sharing using blockchain
   - <b>Import</b> the BNA file into composer playground
   - <b>Deploy</b> the BNA file with the following settings:
   ![Alt img](Hyperledger-fabric/setup-guide/network-deployment.jpeg?raw=true)
-  - With the following credentials for network administrator:
+  - Set the following credentials for <b>Network Administrator</b>:
     <pre><code>Enrollment ID: admin
     Enrollment secret: adminpw
     </code></pre>
