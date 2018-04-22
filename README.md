@@ -3,10 +3,13 @@ POC to implement CbC report sharing using blockchain
 
 # Setup
 <b><p>1) MySQL server</p></b>
-- Install the <b>MySQL database server only</b> from <a href="https://dev.mysql.com/downloads/mysql/5.7.html#downloads">MySQL</a>
-- Select <b>Server Machine</b> as the configuration type
-- Select the option to run MySQL as a service
-- Set <b>user</b> as "root" and <b>password</b> as "admin"
+- Install the <b>MySQL Community Server 5.7.2x</b> from <a href="https://dev.mysql.com/downloads/mysql/5.7.html#downloads">MySQL</a>
+- Run MySQL installer
+- Select <b>Standalone MySQL Server</b> for Group Replication
+- Select <b>Server Computer</b> as Config Type
+- Select <b>admin</b> as MySQL root password
+- Select "Configure MySQL Server as a Windows Service"
+- Enter Windows Service Name as <b>"MySQL"</b>
 
 <b><p>2) NodeJS</p></b>
 - Install <a href="https://nodejs.org/en/download/">Node.js</a>
