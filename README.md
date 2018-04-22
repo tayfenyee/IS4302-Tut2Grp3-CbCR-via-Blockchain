@@ -219,7 +219,7 @@ POC to implement CbC report sharing using blockchain
       <ul>
         <li><b>Financial Year:</b> 2017</li>
         <li><b>Subsidiary Countries:</b> SG, ID, NZ</li>
-        <li><b>Report File:</b> SG-MNE2_FY2017.xlsx (stored in the subfolder named "reports")</li>
+        <li><b>Report File:</b> SG-MNE2_FY2017.xlsx (stored in the subfolder named "MNE-portal-app/reports")</li>
       </ul>
     </ul>
   </li>
