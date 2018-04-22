@@ -195,7 +195,7 @@ POC to implement CbC report sharing using blockchain
       <ul>
         <li><b>Financial Year:</b> 2016</li>
         <li><b>Subsidiary Countries:</b> SG, CA</li>
-        <li><b>Report File:</b> SG-MNE1_FY2016.xlsx (stored in the subfolder named "reports")</li>
+        <li><b>Report File:</b> SG-MNE1_FY2016.xlsx (stored in the subfolder named "MNE-portal-app/reports")</li>
       </ul>
       <li>You will be able to see the uploaded CbC Report under "Manage CbCR" page</li>
     </ul>
