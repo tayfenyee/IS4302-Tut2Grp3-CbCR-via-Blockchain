@@ -1,5 +1,6 @@
 /**
  * New query file
+ * Author: Christopher Lim
  */
 query RetrieveCbcReportListMNEP {
     description: "RetrieveAllCbcReportSubmitted-MNEPORTAL"
